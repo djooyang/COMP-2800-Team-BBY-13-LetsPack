@@ -1,3 +1,5 @@
+"use strict";
+
 let user = [
     {name: 'Rob', address: '123 Fake street', dob: "April 27, 2021", sex: 'male', hobby: 'canoeing'},
     {name: 'Dan', address: '456 Fake street', dob: "January 02, 2021", sex: 'male', hobby: 'hiking'},
@@ -8,6 +10,6 @@ let user = [
     {name: 'Philip', address: '1231 Fake street', dob: "April 27, 2021", sex: 'male', hobby: 'hunting'},
     {name: 'Tristan', address: '333 arco street', dob: "April 27, 2021", sex: 'male', hobby: 'lancing'},
     {name: 'Arron', address: '3113 Ferguson street', dob: "April 27, 2021", sex: 'male', hobby: 'fencing'},
-    {name: 'Terry', address: '4141 Lee street', dob: "April 27, 2021", sex: 'male', hobby: 'tap dancing'},
+    {name: 'Terry', address: '4141 Lee street', dob: "April 27, 2021", sex: 'male', hobby: 'tap dancing'}
 ];
 
