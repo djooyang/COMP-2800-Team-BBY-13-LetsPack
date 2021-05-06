@@ -1,17 +1,14 @@
-"use strict";
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+//Create Schema and Model
 
 const PersonSchema = new Schema({
-	name: String,
-	address: Number,
-	dob: String,
-	sex: String,
-	hobby: String
+	username: String,
+	age: Number,
+	events: [EventSchema]
 });
 
-const Person = mongoose.model('person', PersonSchema);
+const Author = mongoose.model('author', AuthorSchema);
 
-module.exports = Person;
+module.exports = Author;

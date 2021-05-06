@@ -1,15 +1,14 @@
-"use strict";
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+const ItemModel = require('./item.js');
+const ItemSchema = ItemModel.itemSchema;
 
 const EventSchema = new Schema({
 	name: String,
 	date: String,
-	participants: [PersonSchema]
+	item: [ItemSchema]
 });
 
-const Item = mongoose.model('item', ItemSchema);
+const Event = mongoose.model('event', EventSchema);
 
-module.exports = Item;
+module.exports = Event;
