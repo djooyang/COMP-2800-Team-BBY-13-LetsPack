@@ -1,4 +1,4 @@
-const { MongoClient} = require('mongodb');
+const { MongoClient } = require('mongodb');
 const Event = require('../data/models/event.js');
 const ItemModel = require('../data/models/item.js');
 const Item = ItemModel.item;
@@ -21,29 +21,8 @@ async function disconnect() {
 	await client.close();
 }
 
-//async function main() {
-//	//await listDatabases();
-////	await findEventByName("Crying");
-//	                 //await findAllItemsInEventByName("Crying");
-////	await createEvent(
-////		{
-////		name: "Boba Fett",
-////		date: "Every Day"
-////	});
-//	await addItemToEventByName('Boba Fett', {name: 'Bruh',
-//																									description: 'describing it',
-//																									qty: 5,
-//																									owner: 'a220fja4',
-//																									note: 'huh?'});
-//
-//	//await updateItemInEventByItemName('Crying', 'Itemnamein', 'description', 'CrayCray');
-//	//await removeItemFromEventByName('Crying', 'Itemnamein');
-////	await removeEventByName('Hi');
-//}
-//
-//main().catch(console.error);
 
-
+/* Returns null if the specified event doesn't exist */
 const findEventByName = async function(eventName) {
 	await connect();
 	const result = await client.db("letspack").collection("events").findOne({name: eventName});
@@ -54,15 +33,26 @@ const findEventByName = async function(eventName) {
 	} else {
 		console.log("No event found.");
 		await disconnect();
+		return null;
 	}
 }
 
-
+/* Returns null if the specified event doesn't exist
+ * Returns null if no items exist in the specified event
+ */
 async function findAllItemsInEventByName(eventName) {
-	await connect()
-	const event = await findEventByName(eventName);
-	await disconnect();
-	return event.item;
+	let event = await findEventByName(eventName);
+
+	if (event !== undefined && event !== null) {
+		let items = event.item;
+		if (items !== undefined && items !== null && items.length > 0) {
+			return items;
+		} else {
+			return null;
+		}
+	} else {
+		return null;
+	}
 }
 
 
@@ -101,7 +91,7 @@ async function addItemToEventByName(eventName, itemInfo) {
 	});
 	const eventToAddTo = client.db("letspack").collection("events").updateOne({name: eventName},
 																																						{$push: {item: newItem}},
-																																						{upsert:true});
+																																						{upsert: false});
 	await disconnect();
 }
 
@@ -126,16 +116,6 @@ async function createEvent(eventInfo) {
 	await disconnect();
 }
 
-
-async function listDatabases() {
-	await connect();
-	const databasesList = await client.db().admin().listDatabases();
-	console.log("Databases:");
-	databasesList.databases.forEach(db => {
-		console.log(db.name);
-	})
-	await disconnect();
-}
 
 module.exports = {
 		createEvent: createEvent,
