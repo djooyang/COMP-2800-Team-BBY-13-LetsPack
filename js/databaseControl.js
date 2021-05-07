@@ -138,11 +138,11 @@ async function listDatabases() {
 }
 
 module.exports = {
-		createEvent: createEvent(),
-		removeEventByName: removeEventByName(),
-		addItemToEventByName: addItemToEventByName(),
-		removeItemFromEventByName: removeItemFromEventByName(),
-		updateItemInEventByItemName: updateItemInEventByItemName(),
-		findAllItemsInEventByName: findAllItemsInEventByName(),
-		findEventByName: findEventByName(),
+		createEvent: createEvent,
+		removeEventByName: removeEventByName,
+		addItemToEventByName: addItemToEventByName,
+		removeItemFromEventByName: removeItemFromEventByName,
+		updateItemInEventByItemName: updateItemInEventByItemName,
+		findAllItemsInEventByName: findAllItemsInEventByName,
+		findEventByName: findEventByName,
 };
