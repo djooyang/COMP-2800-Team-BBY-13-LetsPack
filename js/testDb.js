@@ -10,28 +10,36 @@ const findEventByName = database.findEventByName;
 
 async function main() {
 
-	let myEvent = {name: "Let's Go Camping", date: new Date(2019, 0, 23)}; // 0 = January 23 = 23rd of month
-	await createEvent(myEvent);//No concievable errors. Rapid calling is fine.
+	let myEvent = {name: "Let's Go Camping", date: new Date(2019, 0, 23)};
+	await createEvent(myEvent);
 
-//	await removeEventByName('My head hurts'); //NonExistent event is fine. Rapid calling is fine.
+//	await removeEventByName('Other Event');
 
-//	let myItem = {name: 'Wee', description: 'describing it',
-//								qty: 5, owner: 'a220fja4', note: 'huh?'};
-//	await addItemToEventByName("Let's Go Camping", myItem); //NonExistent event is fine. Rapidly is fine.
+	let myAxe = {name: 'Axe', description: 'Small, Wooden handle, Very sharp.',
+								qty: 1, owner: 'Robert', note: "Can't fall a tree with it."};
+	await addItemToEventByName("Let's Go Camping", myAxe);
+
+	let myTent = {name: 'Tent', description: '3 person tent.',
+								qty: 1, owner: 'Robert', note: "Needs a tarp cause it isn't rain proof."};
+	await addItemToEventByName("Let's Go Camping", myTent);
+
+	let myFirstAidKit = {name: 'First Aid Kit', description: 'Suitable for a group of 4',
+								qty: 1, owner: 'Robert', note: "I only have level 1 first aid."};
+	await addItemToEventByName("Let's Go Camping", myFirstAidKit);
 
 
-//	await removeItemFromEventByName('Boba Fett', 'Bruh'); //NonExistent event is fine, NonExistent Item is find. Rapidly is fine.
+//	await removeItemFromEventByName('Other Event', 'Something');
 
 
-//	await updateItemInEventByItemName('My head hurts', 'Naa', 'description', 'Yes'); //NonExistent event is fine, NonExistent item is fine, Rapidly is fine
+	await updateItemInEventByItemName("Let's Go Camping", 'Axe', 'name', 'Hatchet');
 
 
-//	let items = await findAllItemsInEventByName("Boba Fett"); //NonExistent event is fine(returns null), NonExistent item is fine (returns null). Rapidly is fine.
+//	let items = await findAllItemsInEventByName("Other Event");
 //	console.log(items);
 
 
-//	let event = await findEventByName("My head hurts"); //NonExistent event is fine (returns null), Rapidly is fine.
-//	console.log(event);
+	let event = await findEventByName("Let's Go Camping");
+	console.log(event);
 
 }
 
