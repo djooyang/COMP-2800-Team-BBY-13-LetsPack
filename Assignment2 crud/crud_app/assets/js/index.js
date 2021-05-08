@@ -1,5 +1,4 @@
-
-
+"use strict";
 
 $("#add_user").submit(function(event){
     alert("Data Inserted Successfully!");
@@ -29,8 +28,7 @@ $("#update_user").submit(function(event){
 })
 
 if(window.location.pathname == "/"){
-    $ondelete = $(".table tbody td a.delete");
-    $ondelete.click(function(){
+    $(".table tbody td a.delete").click(function(){
         var id = $(this).attr("data-id")
 
         var request = {

@@ -1,3 +1,5 @@
+"use strict";
+
 const mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
@@ -9,6 +11,9 @@ var schema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true
+    },
+    hobby : {
+        type: String,
     },
     gender : String,
     status : String

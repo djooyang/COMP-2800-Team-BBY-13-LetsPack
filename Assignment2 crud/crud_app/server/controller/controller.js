@@ -1,10 +1,14 @@
+"use strict";
+
 var Userdb = require('../model/model');
 const sanitizeHtml = require('sanitize-html');
 
+//Helper function to sanitize the html out of the body.
 function sanitizeHtmlOfBody(bodyToSanitize) {
 	bodyToSanitize.name = sanitizeHtml(bodyToSanitize.name);
 	bodyToSanitize.email = sanitizeHtml(bodyToSanitize.email);
-	bodyToSanitize.gander = sanitizeHtml(bodyToSanitize.gender);
+	bodyToSanitize.hobby = sanitizeHtml(bodyToSanitize.hobby);
+	bodyToSanitize.gender = sanitizeHtml(bodyToSanitize.gender);
 	bodyToSanitize.status = sanitizeHtml(bodyToSanitize.status);
 }
 
@@ -18,20 +22,19 @@ exports.create = (req,res)=>{
     }
 
 	sanitizeHtmlOfBody(req.body);
-				//  ******* req.body NEEDS TO BE SANITIZED*****
+
     // new user
     const user = new Userdb({
         name : req.body.name,
         email : req.body.email,
         gender: req.body.gender,
+        hobby: req.body.hobby,
         status : req.body.status
     })
 
     // save user in the database
-    user
-        .save(user)
+    user.save(user)
         .then(data => {
-            //res.send(data)
             res.redirect('/add-user');
         })
         .catch(err =>{
@@ -46,7 +49,7 @@ exports.create = (req,res)=>{
 exports.find = (req, res)=>{
 
     if(req.query.id){
-        const id = sanitizeHtml(req.query.id); //***************** NEED TO SANITIZE *****
+        const id = sanitizeHtml(req.query.id);
 
         Userdb.findById(id)
             .then(data =>{
@@ -83,7 +86,7 @@ exports.update = (req, res)=>{
 
 		sanitizeHtmlOfBody(req.body);
 
-    const id = sanitizeHtml(req.params.id); // *********** NEEDS TO BE SANITIZED ************
+    const id = sanitizeHtml(req.params.id);
     Userdb.findByIdAndUpdate(id, req.body, { useFindAndModify: false})
         .then(data => {
             if(!data){
@@ -99,7 +102,7 @@ exports.update = (req, res)=>{
 
 // Delete a user with specified user id in the request
 exports.delete = (req, res)=>{
-    const id = sanitizeHtml(req.params.id); // ****** NEEDS TO BE SANITIZED ****
+    const id = sanitizeHtml(req.params.id);
 
     Userdb.findByIdAndDelete(id)
         .then(data => {

@@ -30,6 +30,10 @@
             <input type="text" name="email" value="<%= user.email%>" placeholder="example@gmail.com">
         </div>
         <div class="form-group">
+            <label for="Hobby" class="text-light">Hobby</label>
+            <input type="text" name="hobby" value="" placeholder="Canoeing">
+        </div>
+        <div class="form-group">
             <label for="gender" class="text-light">Gender</label>
             <div class="radio inline">
                 <input type="radio" id="radio-2" name="gender" value="Male" <%= user.gender == 'Male' ? 'checked' : '' %>>

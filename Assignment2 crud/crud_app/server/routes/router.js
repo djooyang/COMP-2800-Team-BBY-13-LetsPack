@@ -1,3 +1,5 @@
+"use strict";
+
 const express= require('express');
 const route = express.Router();
 
@@ -5,7 +7,15 @@ const services = require('../services/render');
 const controller = require('../controller/controller');
 
 const filter = require('content-filter');
-route.use(filter());
+
+var blackList = ['$','{', '}','&','&&','|','||']
+var options = {
+	urlBlackList: blackList,
+	bodyBlackList: blackList
+}
+
+route.use(filter(options, {dispatchToErrorHandler: true}));
+
 
 /**
  * @description Root Route
