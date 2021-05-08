@@ -7,7 +7,7 @@ exports.create = (req,res)=>{
         res.status(400).send({ message : "Content can not be emtpy!"});
         return;
     }
-
+				//  ******* req.body NEEDS TO BE SANITIZED*****
     // new user
     const user = new Userdb({
         name : req.body.name,
@@ -35,7 +35,7 @@ exports.create = (req,res)=>{
 exports.find = (req, res)=>{
 
     if(req.query.id){
-        const id = req.query.id;
+        const id = req.query.id; //***************** NEED TO SANITIZE *****
 
         Userdb.findById(id)
             .then(data =>{
@@ -69,8 +69,9 @@ exports.update = (req, res)=>{
             .status(400)
             .send({ message : "Data to update can not be empty"})
     }
-
-    const id = req.params.id;
+	  console.log("****REQUEST BODY***"); // ****req.body NEEDS TO BE SANITIZED****
+    console.log(req.body);
+    const id = req.params.id; // *********** NEEDS TO BE SANITIZED ************
     Userdb.findByIdAndUpdate(id, req.body, { useFindAndModify: false})
         .then(data => {
             if(!data){
@@ -86,7 +87,7 @@ exports.update = (req, res)=>{
 
 // Delete a user with specified user id in the request
 exports.delete = (req, res)=>{
-    const id = req.params.id;
+    const id = req.params.id; // ****** NEEDS TO BE SANITIZED ****
 
     Userdb.findByIdAndDelete(id)
         .then(data => {
