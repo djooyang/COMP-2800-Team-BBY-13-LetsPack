@@ -20,11 +20,16 @@
 
     <section class="login">
       <h2>Log in</h2>
-      <ul class="unorderedList">
-        <li><input type="text" placeholder="Username" title="enterName"></li>
-        <li><input type="password" placeholder="password" title="enterPassword"></li>
-        <li><button class="loginBTN">Log in</button></li>
-      </ul>
+				<form id='loginForm'>
+					<p id="formTitle">Welcome</p>
+					<input id='email' type='email' required="required" placeholder="Email"/>
+					<input id='password' type='password' required="required" placeholder="Password"/>
+					<button id="login-submit" type="submit" class="btn text-dark update">Login</button>
+					<p><span id="serverMsg"></span></p>
+					<p id="forgotP"><a href="#">Forgot Login</a>?</p>
+					<p id="notMemberP"><a href="#">Get Membership</a></p>
+					<p id="errorMsg">&nbsp;</p>
+				</form>
     </section>
 
   </div>

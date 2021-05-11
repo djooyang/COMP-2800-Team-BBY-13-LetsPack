@@ -30,7 +30,18 @@ exports.update_user = (req, res) =>{
         })
 }
 
-
+exports.profile = (req, res) =>{
+    // check for a session first!
+    if(req.session.loggedIn) {
+//			        // put the name in
+//        $template("#profile_name").html(req.session.email);
+        res.render("profile");
+    } else {
+        // not logged in - no session!
+			 console.log("Redirected************************");
+        res.redirect('/');
+    }
+}
 
 exports.login = (req, res) =>{
     res.render('login');
