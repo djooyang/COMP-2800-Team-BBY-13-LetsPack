@@ -1,6 +1,8 @@
 "use strict";
 
 var Userdb = require('../model/model');
+var Users = require('../model/user');
+var Event = require('../model/event');
 const sanitizeHtml = require('sanitize-html');
 
 //Helper function to sanitize the html out of the body.

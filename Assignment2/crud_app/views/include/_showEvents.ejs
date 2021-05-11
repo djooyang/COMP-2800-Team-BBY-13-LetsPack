@@ -1,0 +1,11 @@
+<% for(var i = 0; i < events.length; i++) { %>
+    <tr>
+        <td><%= i + 1 %></td>
+        <td><%= events[i].name %></td>
+        <td>
+            <a class="btn border-shadow delete" data-id=<%= events[i]._id%> >
+                <span class="text-gradient"><i class="fas fa-times"></i></span>
+            </a>
+        </td>
+    </tr>
+    <% } %>

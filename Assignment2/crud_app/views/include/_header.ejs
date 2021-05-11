@@ -7,18 +7,40 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/style.css">
+	  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
     
     <!-- Header -->
         <header id="header">
-            <nav>
-                <div class="container">
-                    <div class="text-center">
-                        <a href="/" class="nav-brand text-dark">COMP 2537 – Web Development 2</a>
-                        <p>Robert Roe: A00187290</p><p>Daniel Yang A01231809</p><p>Kwanyong Jo A01207367</p>
-                    </div>
-                </div>
-            </nav>
+						<nav class="container_nav">
+
+							<div class="hambergerMeun">
+									<a href="#" class="active">LetsPack</a>
+									<div id="menuDetail">
+											<a href="#">Inventory View</a>
+											<a href="#">People View</a>
+											<a href="#">Schedule</a>
+											<a href="#">Upcomming Event</a>
+											<a href="#">My List</a>
+									</div>
+									<a href="javascript:void(0);" class="icon" onclick="listMenu()">
+											<i class="fa fa-bars"></i>
+									</a>
+							</div>
+							<p>Robert Roe: A00187290</p><p>Daniel Yang A01231809</p><p>Kwanyong Jo A01207367</p>
+
+						</nav>
+
+						<script>
+								function listMenu() {
+									var a = document.getElementById("menuDetail");
+									if (a.style.display === "block") {
+										a.style.display = "none";
+									} else {
+										a.style.display = "block";
+									}
+								}
+						</script>
         </header>
-    <!-- /Header -->
+

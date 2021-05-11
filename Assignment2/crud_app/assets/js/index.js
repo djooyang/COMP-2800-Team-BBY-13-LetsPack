@@ -89,6 +89,7 @@ $("#update_user").submit(function(event){
 })
 
 
+//Deletes a user and updates the page to show it
 if(window.location.pathname == "/"){
     $(".table tbody td a.delete").click(function(){
         var id = $(this).attr("data-id")

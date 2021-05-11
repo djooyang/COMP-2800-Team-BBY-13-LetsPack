@@ -2,7 +2,7 @@
 
 const axios = require('axios');
 
-
+//gets all the users and passes them to the index page when it's constructed
 exports.homeRoutes = (req, res) => {
     // Make a get request to /api/users
     axios.get('http://localhost:3000/api/users')
@@ -15,6 +15,21 @@ exports.homeRoutes = (req, res) => {
 
     
 }
+
+//gets all the events and passes them to the profile page when it's constructed
+exports.profile = (req, res) => {
+    // Make a get request to /api/users
+    axios.get('profile', { params : { email : req.query.email}})
+        .then(function(response){
+            res.render('profile', { events : response.data });
+        })
+        .catch(err =>{
+            res.send(err);
+        })
+
+    
+}
+
 
 exports.add_user = (req, res) =>{
     res.render('add_user');
