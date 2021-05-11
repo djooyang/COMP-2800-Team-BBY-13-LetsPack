@@ -1,6 +1,7 @@
 "use strict";
 
 const express = require('express');
+const favicon = require('serve-favicon');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const bodyparser = require("body-parser");
@@ -13,6 +14,7 @@ const app = express();
 dotenv.config( { path : 'config.env'} )
 const PORT = process.env.PORT || 8080
 
+app.use(favicon(__dirname + '/assets/images/favicon.ico'));
 // log requests
 app.use(morgan('tiny'));
 
