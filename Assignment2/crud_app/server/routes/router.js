@@ -29,12 +29,16 @@ MongoClient.connect('mongodb+srv://lunaticky:rhanchd6@cluster0.rfmec.mongodb.net
   db = client.db('todoapp'); //connect to DB called todoapp
 })
 
-
+/*
 route.get('/', function(req, res){
 	session["UserID"] = 2354;
 	console.log(session);
   res.render('profile.ejs'); 
 });
+*/
+
+
+
 
 
 route.get('/write', function(req, res){
@@ -59,6 +63,10 @@ route.post('/add', function(request, response){
       });  
     }); 
 })
+
+
+
+
 
 
 // list로 GET요청으로 접속하면
@@ -128,24 +136,27 @@ route.post('/login', passport.authenticate('local', {
   failureRedirect : '/fail'
 }),function(req, res){
 		console.log("CALLED POST/LOGIN");
-  res.redirect('/')
+  res.redirect('/profile')
+  console.log(req.user);
 });
 
-/*insert middleware */
-/* whenever access /mypage ==> (isLogin) isLogin function operate*/
-route.get('/mypage', isLogin, function(req, res){
-  console.log(req.user);
-  res.render('mypage.ejs', {User : req.user}) //send data to ejs file
-})
 
-/* middleware */
-function isLogin(req, res, next){
-  if(req.user){
-    next()
-  } else{
-    res.send('you need to login?')
-  }
-}
+
+// /*insert middleware */
+// /* whenever access /mypage ==> (isLogin) isLogin function operate*/
+// route.get('/mypage', isLogin, function(req, res){
+//   console.log(req.user);
+//   res.render('mypage.ejs', {User : req.user}) //send data to ejs file
+// })
+
+// /* middleware */
+// function isLogin(req, res, next){
+//   if(req.user){
+//     next()
+//   } else{
+//     res.send('you need to login?')
+//   }
+// }
 
 
 
@@ -192,6 +203,23 @@ passport.deserializeUser(function (ID, done) {
     done(null, result) //result == {id : text, pw : test}
   })
 });
+
+
+route.get('/profile', isLogin, function(req, res){
+	
+
+  res.render('profile.ejs', {User : req.user});
+
+});
+
+function isLogin(req, res, next){
+  if(req.user){
+    next()
+  } else{
+    res.send('you need to login?')
+  }
+}
+
 
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
