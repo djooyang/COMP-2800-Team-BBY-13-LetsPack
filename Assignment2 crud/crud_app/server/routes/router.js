@@ -42,3 +42,10 @@ route.put('/api/users/:id', controller.update);
 route.delete('/api/users/:id', controller.delete);
 
 module.exports = route
+
+
+/**
+ * @description update Route
+ * @method GET /login
+ */
+ route.get('/login', services.login);

@@ -1,0 +1,71 @@
+.container_nav {
+    background-color: rgb(70, 70, 70);
+    margin: auto;
+    height: 80vh;
+    color: white;
+  }
+
+
+  .hambergerMeun {
+    overflow: hidden;
+    background-color: #333;
+    position: relative;
+  }
+
+  #menuDetail {
+    display: none;
+  }
+
+  .hambergerMeun a {
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 1rem;
+    display: block;
+  }
+
+  .hambergerMeun a.icon {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: rgb(14, 14, 14);
+  }
+
+  #title_bar {
+    display: grid;
+    grid-template-columns: 10fr 1fr;
+  }
+
+
+  #title {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  #plus {
+    content: "\002B";
+    font-size: 3rem;
+  }
+
+  #inputContainer{
+    border: 2px solid white;
+  }
+  .form-group{
+    margin: 1rem 0;
+  }
+  .form-group > label{
+    display: inline-block;
+    width: 100px;
+  }
+  .form-group > input{
+    display: inline-block;
+    width: 30%;
+  }
+  #inputContainer button{
+    padding: 5px;
+    position: relative;
+    left: 20%;
+
+  }
+

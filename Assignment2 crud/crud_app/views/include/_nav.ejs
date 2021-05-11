@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/main.css">
+
+</head>
+
+<body>
+
+
+  <div class="container_nav">
+
+    <div class="hambergerMeun">
+      <a href="#" class="active">LetsPack</a>
+      <div id="menuDetail">
+        <a href="#">Inventory View</a>
+        <a href="#">Peoplw View</a>
+        <a href="#">Schedule</a>
+        <a href="#">Upcomming Event</a>
+        <a href="#">My List</a>
+      </div>
+      <a href="javascript:void(0);" class="icon" onclick="listMenu()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+
+
+    <script>
+        function listMenu() {
+          var a = document.getElementById("menuDetail");
+          if (a.style.display === "block") {
+            a.style.display = "none";
+          } else {
+            a.style.display = "block";
+          }
+        }
+      </script>
+</body>

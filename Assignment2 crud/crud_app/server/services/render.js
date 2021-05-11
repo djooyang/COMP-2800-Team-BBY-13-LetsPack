@@ -29,3 +29,23 @@ exports.update_user = (req, res) =>{
             res.send(err);
         })
 }
+
+
+
+exports.login = (req, res) =>{
+    res.render('login');
+}
+
+
+/*
+exports.login = (req, res) =>{
+    axios.get('http://localhost:3000/login')
+        .then(function(){
+            req.render('login')
+        })
+        .catch(err =>{
+            res.send(err);
+        })
+}
+*/
+
