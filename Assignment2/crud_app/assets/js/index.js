@@ -71,7 +71,6 @@ $("#add_event").submit(function(event){
 			$.map(unindexed_array, function(n, i){
 					data[n['name']] = n['value']
 			})
-
 //		if (validateForm(data)) {  NEED TO VALIDATE LATER
 			var request = {
 					"url" : `http://localhost:3000/api/events`,

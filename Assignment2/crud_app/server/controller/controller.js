@@ -56,10 +56,10 @@ exports.createEvent = (req,res)=>{
     }
 
 //	sanitizeHtmlOfBody(req.body); NEED TO SANITZE LATER
-
     // new event
     const event = new Event({
-        name : req.body.name
+        name : req.body.name,
+				users : [req._passport.session.user]
     })
 
     // save user in the database

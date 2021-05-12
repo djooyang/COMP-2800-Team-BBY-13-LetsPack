@@ -207,7 +207,7 @@ passport.deserializeUser(function (ID, done) {
 var Event = require('../model/event');
 route.get('/profile', isLogin, function(req, res){
 let events = [];
-    db.collection('events').find().toArray(function(error, result){
+    db.collection('events').find({ users : req._passport.session.user }).toArray(function(error, result){
 
 //			for (let i = 0; i < result.length; i++) {
 //				events.push(result[i]);
@@ -250,7 +250,7 @@ route.get('/', services.homeRoutes);
  */
 route.get('/add-user', services.add_user);
 
-route.get('/add-event', services.add_event);
+route.get('/new-event', services.new_event);
 
 
 /**

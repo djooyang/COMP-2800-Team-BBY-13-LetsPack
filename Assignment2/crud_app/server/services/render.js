@@ -65,8 +65,8 @@ exports.login = (req, res) =>{
     res.render('login');
 }
 
-exports.add_event = (req, res) =>{
-	res.render('add_event');
+exports.new_event = (req, res) =>{
+	res.render('new_event');
 }
 /*
 exports.login = (req, res) =>{
