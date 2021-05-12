@@ -204,11 +204,20 @@ passport.deserializeUser(function (ID, done) {
   })
 });
 
-
+var Event = require('../model/event');
 route.get('/profile', isLogin, function(req, res){
-	
+let events = [];
+    db.collection('events').find().toArray(function(error, result){
 
-  res.render('profile.ejs', {User : req.user});
+//			for (let i = 0; i < result.length; i++) {
+//				events.push(result[i]);
+//			}
+
+			events = result;
+
+			res.render('profile.ejs', {User : req.user, events : events});
+
+    });
 
 });
 
@@ -241,7 +250,7 @@ route.get('/', services.homeRoutes);
  */
 route.get('/add-user', services.add_user);
 
-
+route.get('/add-event', services.add_event);
 
 
 /**
@@ -250,11 +259,16 @@ route.get('/add-user', services.add_user);
  */
 route.get('/update-user', services.update_user);
 
+route.get('/update-event', services.update_event);
+
 // API
 route.post('/api/users', controller.create);
+route.post('/api/events', controller.createEvent);
 route.get('/api/users', controller.find);
 route.put('/api/users/:id', controller.update);
+route.put('/api/event/:id', controller.updateEvent);
 route.delete('/api/users/:id', controller.delete);
+route.delete('/api/events/:id', controller.deleteEvent);
 
 module.exports = route
 

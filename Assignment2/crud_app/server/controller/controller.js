@@ -47,6 +47,35 @@ exports.create = (req,res)=>{
 
 }
 
+// create and save new user
+exports.createEvent = (req,res)=>{
+    // validate request
+    if(!req.body){
+        res.status(400).send({ message : "Content can not be emtpy!"});
+        return;
+    }
+
+//	sanitizeHtmlOfBody(req.body); NEED TO SANITZE LATER
+
+    // new event
+    const event = new Event({
+        name : req.body.name
+    })
+
+    // save user in the database
+    event.save(event)
+        .then(data => {
+            res.redirect('/profile');
+        })
+        .catch(err =>{
+            res.status(500).send({
+                message : err.message || "Some error occurred while creating a create operation"
+            });
+        });
+
+}
+
+
 // retrieve and return all users/ retrive and return a single user
 exports.find = (req, res)=>{
 
@@ -78,7 +107,7 @@ exports.find = (req, res)=>{
     
 }
 
-// Update a new idetified user by user id
+// Update a new identified user by user id
 exports.update = (req, res)=>{
     if(!req.body){
         return res
@@ -102,6 +131,34 @@ exports.update = (req, res)=>{
         })
 }
 
+
+// Update a new identified event by event id
+exports.updateEvent = (req, res)=>{
+	console.log("UPDATE EVENT CALLED");
+    if(!req.body){
+
+        return res
+            .status(400)
+            .send({ message : "Data to update can not be empty"})
+    }
+
+//		sanitizeHtmlOfBody(req.body); NEED TO SANITIZE LATER
+console.log(req.params.id);
+    const id = sanitizeHtml(req.params.id);
+    Event.findByIdAndUpdate(id, req.body, { useFindAndModify: false})
+        .then(data => {
+            if(!data){
+                res.status(404).send({ message : `Cannot Update event with ${id}. Maybe event not found!`})
+            }else{
+                res.send(data)
+            }
+        })
+        .catch(err =>{
+            res.status(500).send({ message : "Error Update event information"})
+        })
+}
+
+
 // Delete a user with specified user id in the request
 exports.delete = (req, res)=>{
     const id = sanitizeHtml(req.params.id);
@@ -119,6 +176,27 @@ exports.delete = (req, res)=>{
         .catch(err =>{
             res.status(500).send({
                 message: "Could not delete User with id=" + id
+            });
+        });
+}
+
+// Delete a event with specified event id in the request
+exports.deleteEvent = (req, res)=>{
+    const id = sanitizeHtml(req.params.id);
+
+    Event.findByIdAndDelete(id)
+        .then(data => {
+            if(!data){
+                res.status(404).send({ message : `Cannot Delete with id ${id}. Maybe id is wrong`})
+            }else{
+                res.send({
+                    message : "Event was deleted successfully!"
+                })
+            }
+        })
+        .catch(err =>{
+            res.status(500).send({
+                message: "Could not delete Event with id=" + id
             });
         });
 }

@@ -45,13 +45,29 @@ exports.update_user = (req, res) =>{
         })
 }
 
+var Event = require('../model/event');
+
+exports.update_event = (req, res) =>{
+
+		Event.findById(req.query.id)
+				 .then(eventData => {
+
+							res.render("update_event", { event : eventData})
+						})
+						.catch(err =>{
+							res.send(err);
+						})
+}
+
 
 
 exports.login = (req, res) =>{
     res.render('login');
 }
 
-
+exports.add_event = (req, res) =>{
+	res.render('add_event');
+}
 /*
 exports.login = (req, res) =>{
     axios.get('http://localhost:3000/login')
