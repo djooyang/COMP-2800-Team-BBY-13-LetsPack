@@ -1,8 +1,6 @@
 .login {
     width: 60%;
-    position: absolute;
-    left: 50%;
-    top: 50%;
+    display: contents;
     transform: translate(-50%, -50%);
     text-align: center;
 }

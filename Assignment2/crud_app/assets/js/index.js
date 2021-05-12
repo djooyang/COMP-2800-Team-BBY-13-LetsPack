@@ -77,6 +77,7 @@ $("#add_user").submit(function(event){
                         window.location.replace("/profile");
                     } else {
                         // show error message
+											console.log("ERROR THROWNING");
                         $("#errorMsg").html(data['msg']);
                     }
 

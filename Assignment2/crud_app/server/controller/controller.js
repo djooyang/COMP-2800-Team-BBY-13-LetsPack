@@ -120,3 +120,25 @@ exports.delete = (req, res)=>{
             });
         });
 }
+
+
+exports.findByEmailAndPassword = (email, password, callback)=>{
+
+    if(email && password){
+        const safeEmail = sanitizeHtml(email);
+        const safePassword = sanitizeHtml(password);
+        Userdb.findOne({email : safeEmail, password : safePassword})
+            .then(data =>{
+                if(!data){
+                    return null;
+                }else{
+                    return data;
+                }
+            })
+            .catch(err =>{
+                res.status(500).send({ message: "Error retrieving user" + id})
+            })
+
+    }
+
+}

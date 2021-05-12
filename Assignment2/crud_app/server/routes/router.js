@@ -68,6 +68,7 @@ module.exports = app
 
 // Notice that this is a 'POST'
 app.post('/authenticate', function(req, res) {
+	  console.log("AUTHENTICATE CALLED");
     res.setHeader('Content-Type', 'application/json');
 
 
@@ -75,7 +76,7 @@ app.post('/authenticate', function(req, res) {
 //    console.log("Password", req.body.password);
 
 
-    let results = authenticate(req.body.email, req.body.password,
+    authenticate(req.body.email, req.body.password,
         function(rows) {
             //console.log(rows.password);
             if(rows == null) {
@@ -101,32 +102,12 @@ app.post('/authenticate', function(req, res) {
 
 function authenticate(email, pwd, callback) {
 
-    const mysql = require('mysql2');
-    const connection = mysql.createConnection({
-      host: 'localhost',
-      user: 'root',
-      password: '',
-      database: 'test'
-    });
-
-    connection.query(
-      "SELECT * FROM user WHERE email = ? AND password = ?", [email, pwd],
-      function (error, results) {
-        if (error) {
-            throw error;
-        }
-
-        if(results.length > 0) {
-            // email and password found
-            return callback(results[0]);
-        } else {
-            // user not found
-            return callback(null);
-        }
-
-    });
-
+    let dbresults = controller.findByEmailAndPassword(email, pwd);
+console.log("DB RESULTS");
+console.log(dbresults);
+            return callback(dbresults);
 }
+
 
 
 app.get('/logout', function(req,res){
