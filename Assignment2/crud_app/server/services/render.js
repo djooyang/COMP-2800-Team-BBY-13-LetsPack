@@ -60,6 +60,18 @@ exports.update_event = (req, res) =>{
 }
 
 
+exports.invite_create = (req, res) =>{
+
+		Event.findById(req.query.id)
+				 .then(eventData => {
+
+							res.render("invite_create", { event : eventData, sender : req._passport.session.user})
+						})
+						.catch(err =>{
+							res.send(err);
+						})
+}
+
 
 exports.login = (req, res) =>{
     res.render('login');

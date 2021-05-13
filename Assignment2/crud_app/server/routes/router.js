@@ -207,17 +207,14 @@ passport.deserializeUser(function (ID, done) {
 var Event = require('../model/event');
 route.get('/profile', isLogin, function(req, res){
 let events = [];
-    db.collection('events').find({ users : req._passport.session.user }).toArray(function(error, result){
-
-//			for (let i = 0; i < result.length; i++) {
-//				events.push(result[i]);
-//			}
-
-			events = result;
-
-			res.render('profile.ejs', {User : req.user, events : events});
-
-    });
+let invites = [];
+		db.collection('events').find({ users : req._passport.session.user }).toArray(function(error, result){
+				events = result;
+				db.collection('invites').find({ recipient : req._passport.session.user }).toArray(function(error, result){
+						invites = result;
+				res.render('profile.ejs', {User : req.user, events : events, invites : invites});
+				});
+		});
 
 });
 
@@ -261,9 +258,14 @@ route.get('/update-user', services.update_user);
 
 route.get('/update-event', services.update_event);
 
+route.get('/invite-create', services.invite_create);
+route.get('/invite-accept', controller.acceptInvite);
+route.get('/invite-reject', controller.rejectInvite);
+
 // API
 route.post('/api/users', controller.create);
 route.post('/api/events', controller.createEvent);
+route.post('/api/invites', controller.createInvite);
 route.get('/api/users', controller.find);
 route.put('/api/users/:id', controller.update);
 route.put('/api/event/:id', controller.updateEvent);
