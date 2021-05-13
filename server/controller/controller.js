@@ -139,18 +139,6 @@ exports.createInvite = (req,res)=>{
 
 }
 
-
-
-
-<<<<<<< HEAD:server/controller/controller.js
-=======
-
-
-
-
-
-
->>>>>>> Kwanyong_Jo_ItemInventory:Assignment2/crud_app/server/controller/controller.js
 // retrieve and return all users/ retrive and return a single user
 exports.find = (req, res)=>{
 
