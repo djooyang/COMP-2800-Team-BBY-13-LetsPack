@@ -3,6 +3,7 @@
 var Userdb = require('../model/model');
 var Users = require('../model/user');
 var Event = require('../model/event');
+var ItemDb = require('../model/item');
 const sanitizeHtml = require('sanitize-html');
 
 //Helper function to sanitize the html out of the body.
@@ -74,6 +75,14 @@ exports.createEvent = (req,res)=>{
         });
 
 }
+
+
+
+
+
+
+
+
 
 
 // retrieve and return all users/ retrive and return a single user
@@ -197,6 +206,86 @@ exports.deleteEvent = (req, res)=>{
         .catch(err =>{
             res.status(500).send({
                 message: "Could not delete Event with id=" + id
+            });
+        });
+}
+
+
+// create and save new user
+exports.createItem = (req,res)=>{
+    // validate request
+    if(!req.body){
+        res.status(400).send({ message : "Content can not be emtpy!"});
+        return;
+    }
+
+//	sanitizeHtmlOfBody(req.body); NEED TO SANITZE LATER
+
+    // new event
+    const item = new ItemDb({
+        name : req.body.item,
+        qty : req.body.qty,
+        des : req.body.des,
+        owner : req.body.owner
+
+    })
+
+    // save user in the database
+    item.save(item)
+        .then(data => {
+            res.redirect('/items');
+        })
+        .catch(err =>{
+            res.status(500).send({
+                message : err.message || "Some error occurred while creating a create operation"
+            });
+        });
+
+}
+
+// Update a new identified item by item id
+exports.updateItem = (req, res)=>{
+	console.log("UPDATE ITEM CALLED");
+    if(!req.body){
+
+        return res
+            .status(400)
+            .send({ message : "Data to update can not be empty"})
+    }
+
+//		sanitizeHtmlOfBody(req.body); NEED TO SANITIZE LATER
+console.log(req.params.id);
+    const id = sanitizeHtml(req.params.id);
+    ItemDb.findByIdAndUpdate(id, req.body, { useFindAndModify: false})
+        .then(data => {
+            if(!data){
+                res.status(404).send({ message : `Cannot Update event with ${id}. Maybe event not found!`})
+            }else{
+                res.send(data)
+            }
+        })
+        .catch(err =>{
+            res.status(500).send({ message : "Error Update event information"})
+        })
+}
+
+// Delete a item with specified item id in the request
+exports.deleteItem = (req, res)=>{
+    const id = sanitizeHtml(req.params.id);
+
+    ItemDb.findByIdAndDelete(id)
+        .then(data => {
+            if(!data){
+                res.status(404).send({ message : `Cannot Delete with id ${id}. Maybe id is wrong`})
+            }else{
+                res.send({
+                    message : "Item was deleted successfully!"
+                })
+            }
+        })
+        .catch(err =>{
+            res.status(500).send({
+                message: "Could not delete item with id=" + id
             });
         });
 }

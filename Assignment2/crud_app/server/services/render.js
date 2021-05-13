@@ -26,9 +26,37 @@ exports.profile = (req, res) => {
         .catch(err =>{
             res.send(err);
         })
+}
 
+
+
+
+
+//****************Item part*********************** */
+
+
+exports.items = (req, res) => {
+    // Make a get request to /api/users
+    axios.get('items', { params : { email : req.query.email}})
+        .then(function(response){
+            res.render('items', { item : response.data });
+        })
+        .catch(err =>{
+            res.send(err);
+        })
     
 }
+
+exports.items = (req, res) =>{
+    res.render('items');
+}
+
+exports.add_item = (req, res) =>{
+    res.render('add_item');
+}
+
+
+
 
 
 exports.add_user = (req, res) =>{
@@ -46,6 +74,7 @@ exports.update_user = (req, res) =>{
 }
 
 var Event = require('../model/event');
+var ItemDb = require('../model/item');
 
 exports.update_event = (req, res) =>{
 
@@ -60,6 +89,18 @@ exports.update_event = (req, res) =>{
 }
 
 
+exports.update_item = (req, res) =>{
+
+    ItemDb.findById(req.query.id)
+             .then(useritem => {
+
+                        res.render("update_item", { item : useritem})
+                    })
+                    .catch(err =>{
+                        res.send(err);
+                    })
+}
+
 
 exports.login = (req, res) =>{
     res.render('login');
@@ -68,15 +109,5 @@ exports.login = (req, res) =>{
 exports.add_event = (req, res) =>{
 	res.render('add_event');
 }
-/*
-exports.login = (req, res) =>{
-    axios.get('http://localhost:3000/login')
-        .then(function(){
-            req.render('login')
-        })
-        .catch(err =>{
-            res.send(err);
-        })
-}
-*/
+
 
