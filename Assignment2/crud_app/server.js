@@ -14,7 +14,7 @@ const app = express();
 dotenv.config( { path : 'config.env'} )
 const PORT = process.env.PORT || 8080
 
-app.use(favicon(__dirname + '/assets/images/favicon.ico'));
+app.use(favicon(__dirname + '/assets/img/favicon.ico'));
 // log requests
 app.use(morgan('tiny'));
 
