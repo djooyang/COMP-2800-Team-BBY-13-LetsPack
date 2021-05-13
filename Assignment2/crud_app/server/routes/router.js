@@ -227,7 +227,7 @@ function isLogin(req, res, next){
   if(req.user){
     next()
   } else{
-    res.send('you need to login?')
+    res.redirect("/login");
   }
 }
 

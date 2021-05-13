@@ -86,7 +86,7 @@ $("#add_event").submit(function(event){
 			}
 
 			$.ajax(request).done(function(response){
-					alert("Data Inserted Successfully!");
+				window.location.replace("/profile");
 			})
 
 //    }
@@ -134,7 +134,7 @@ $("#send-invite").submit(function(event){
 			}
 
 			$.ajax(request).done(function(response){
-					alert("Data Inserted Successfully!");
+					window.location.replace("/profile");
 			})
 
 //    }
@@ -188,7 +188,7 @@ $("#update_event").submit(function(event){
 			}
 
 			$.ajax(request).done(function(response){
-					alert("Data Updated Successfully!");
+					window.location.replace("/profile");
 			})
 
 //    }
@@ -208,7 +208,6 @@ if(window.location.pathname == "/"){
 
         if(confirm("Do you really want to delete this record?")){
             $.ajax(request).done(function(response){
-                alert("Data Deleted Successfully!");
                 location.reload();
             })
         }
@@ -228,7 +227,6 @@ if(window.location.pathname == "/profile"){
 
         if(confirm("Do you really want to delete this record?")){
             $.ajax(request).done(function(response){
-                alert("Data Deleted Successfully!");
                 location.reload();
             })
         }

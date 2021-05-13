@@ -73,6 +73,8 @@ a {
 
 #site-main{
     margin-top: 2em;
+    margin-right: 1rem;
+    margin-left: 1rem;
     font-family: 'Barlow', sans-serif;
 }
 
@@ -109,6 +111,11 @@ table{
 
 .table tr:hover td > a{
     box-shadow: none;
+}
+
+#createAccount {
+	display:block;
+	margin: 1rem;
 }
 
 .table .thead-dark th{
