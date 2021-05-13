@@ -3,6 +3,7 @@
 var Userdb = require('../model/model');
 var Users = require('../model/user');
 var Event = require('../model/event');
+var Login = require('../model/login');
 const sanitizeHtml = require('sanitize-html');
 
 //Helper function to sanitize the html out of the body.
@@ -14,12 +15,42 @@ function sanitizeHtmlOfBody(bodyToSanitize) {
 	bodyToSanitize.status = sanitizeHtml(bodyToSanitize.status);
 }
 
+// create and save new account
+exports.signup = (req,res)=>{
+
+    // validate request
+    if(!req.body){
+        res.status(400).send({ message : "Content can not be emtpy!"});
+        return;
+    }
+	// sanitizeHtmlOfBody(req.body);
+
+    // new user
+    const login = new Login({
+        id : req.body.id,
+        pw : req.body.pw
+    })
+
+    // save user in the database
+    login.save(login)
+        .then(data => {
+            console.log(login);
+            res.redirect('/login');
+        })
+        .catch(err =>{
+            res.status(500).send({
+                message : err.message || "Some error occurred while creating a create operation"
+            });
+        });
+
+}
+
 
 // create and save new user
 exports.create = (req,res)=>{
     // validate request
     if(!req.body){
-        res.status(400).send({ message : "Content can not be emtpy!"});
+        res.status(400).send({ message : "Content can not be empty!"});
         return;
     }
 
@@ -51,7 +82,7 @@ exports.create = (req,res)=>{
 exports.createEvent = (req,res)=>{
     // validate request
     if(!req.body){
-        res.status(400).send({ message : "Content can not be emtpy!"});
+        res.status(400).send({ message : "Content can not be empty!"});
         return;
     }
 
@@ -72,7 +103,6 @@ exports.createEvent = (req,res)=>{
                 message : err.message || "Some error occurred while creating a create operation"
             });
         });
-
 }
 
 

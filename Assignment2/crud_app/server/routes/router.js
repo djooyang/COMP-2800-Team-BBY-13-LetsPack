@@ -133,12 +133,17 @@ route.get('/login', function(req, res){
 /*passport.authenticate ==> check id whether it is correct*/
 route.post('/login', passport.authenticate('local', {
 
-  failureRedirect : '/fail'
+  failureRedirect : '/login'
 }),function(req, res){
 		console.log("CALLED POST/LOGIN");
   res.redirect('/profile')
   console.log(req.user);
 });
+
+/* routing login page*/
+route.get('/about', function(req, res){
+  res.render('about.ejs')
+})
 
 
 
@@ -176,7 +181,7 @@ passport.use(new LocalStrategy({
   //console.log(input_Id, input_Pw);
 
   // find id in DB
-  db.collection('login').findOne({ id: input_Id }, function (error, result) {
+  db.collection('logins').findOne({ id: input_Id }, function (error, result) {
     if (error) return done(error)
     // no id in DB
     if (!result) return done(null, false, { message: 'Not exist Id' })
@@ -199,7 +204,7 @@ passport.serializeUser(function (user, done) {
 
 /*This is code for searching user's information from DB*/ 
 passport.deserializeUser(function (ID, done) {
-  db.collection('login').findOne({id : ID}, function(error, result){
+  db.collection('logins').findOne({id : ID}, function(error, result){
     done(null, result) //result == {id : text, pw : test}
   })
 });
@@ -229,7 +234,14 @@ function isLogin(req, res, next){
   }
 }
 
-
+route.get('/logout', function(req,res){
+  req.session.destroy(function(error){
+      if(error) {
+          console.log(error);
+      }
+  });
+  res.redirect("/login");
+})
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
@@ -263,6 +275,7 @@ route.get('/update-event', services.update_event);
 
 // API
 route.post('/api/users', controller.create);
+route.post('/api/signup', controller.signup);
 route.post('/api/events', controller.createEvent);
 route.get('/api/users', controller.find);
 route.put('/api/users/:id', controller.update);
@@ -278,3 +291,11 @@ module.exports = route
  * @method GET /login
  */
  route.get('/login', services.login);
+
+ /**
+ * @description update Route
+ * @method GET /login
+ */
+  route.get('/signup', services.signup);
+ 
+
