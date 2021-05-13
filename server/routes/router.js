@@ -223,6 +223,44 @@ let invites = [];
 
 });
 
+
+var  ItemDb = require('../model/item')
+// route.get('/items', isLogin, function(req,res){
+
+//   let itemsFound = [];
+//     db.collection('events').find().toArray(function(error, result){
+//       let eventData = result;
+//       db.collection('items').find().toArray(function(error, result){
+//         itemsFound = result;
+
+//         res.render('items.ejs', {item : itemsFound, event : eventData});
+  
+//       });
+//     });
+// })
+
+
+
+
+
+
+/*************    items  ************* */                   
+// route.get('/items', services.items);
+
+route.get('/items', function(req, res){
+  //디비에 저장된 post라는 collection안의 모든 데이터를 꺼내주세요
+ db.collection('items').find().toArray(function(error, result){
+     console.log(result);
+     res.render('items.ejs', { item : result}); // 코드위치 확인
+ });
+});
+
+
+
+
+
+
+
 function isLogin(req, res, next){
   if(req.user){
     next()
@@ -261,6 +299,8 @@ route.get('/add-user', services.add_user);
 
 route.get('/new-event', services.new_event);
 
+route.get('/add-item', services.add_item);
+
 
 /**
  * @description update Route
@@ -269,6 +309,7 @@ route.get('/new-event', services.new_event);
 route.get('/update-user', services.update_user);
 
 route.get('/update-event', services.update_event);
+route.get('/update-item', services.update_item);
 
 route.get('/invite-create', services.invite_create);
 route.get('/invite-accept', controller.acceptInvite);
@@ -279,11 +320,18 @@ route.post('/api/users', controller.create);
 route.post('/api/signup', controller.signup);
 route.post('/api/events', controller.createEvent);
 route.post('/api/invites', controller.createInvite);
+
+route.post('/api/items', controller.createItem);
 route.get('/api/users', controller.find);
 route.put('/api/users/:id', controller.update);
 route.put('/api/event/:id', controller.updateEvent);
+route.put('/api/item/:id', controller.updateItem);
 route.delete('/api/users/:id', controller.delete);
 route.delete('/api/events/:id', controller.deleteEvent);
+route.delete('/api/item/:id', controller.deleteItem);
+
+
+route.post('/api/item', controller.createItem);
 
 module.exports = route
 
@@ -300,4 +348,3 @@ module.exports = route
  */
   route.get('/signup', services.signup);
  
-

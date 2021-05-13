@@ -116,6 +116,31 @@ $("#signup").submit(function(event){
 
 })
 
+$("#add_item").submit(function(item){
+	item.preventDefault();
+			var unindexed_array = $(this).serializeArray();
+			var data = {}
+
+			$.map(unindexed_array, function(n, i){
+					data[n['name']] = n['value']
+			})
+
+//		if (validateForm(data)) {  NEED TO VALIDATE LATER
+			var request = {
+					"url" : `http://localhost:3000/api/items`,
+					"method" : "POST",
+					"data" : data
+			}
+
+			$.ajax(request).done(function(response){
+					alert("Data Inserted Successfully!");
+			})
+
+//    }
+
+})
+
+
 
 
 $("#send-invite").submit(function(event){
@@ -195,6 +220,31 @@ $("#update_event").submit(function(event){
 
 })
 
+$("#update_item").submit(function(item){
+    item.preventDefault();
+
+			var unindexed_array = $(this).serializeArray();
+			var data = {}
+
+			$.map(unindexed_array, function(n, i){
+					data[n['name']] = n['value']
+			})
+
+//		if (validateForm(data)) { NEED TO DO VALIDATION LATER
+			var request = {
+					"url" : `http://localhost:3000/api/item/${data.id}`,      //
+					"method" : "PUT",
+					"data" : data
+			}
+
+			$.ajax(request).done(function(response){
+					alert("Data Updated Successfully!");
+			})
+
+//    }
+
+})
+
 
 //Deletes a user and updates the page to show it
 if(window.location.pathname == "/"){
@@ -227,6 +277,26 @@ if(window.location.pathname == "/profile"){
 
         if(confirm("Do you really want to delete this record?")){
             $.ajax(request).done(function(response){
+                location.reload();
+            })
+        }
+
+    })
+}
+
+//Deletes a item and updates the page to show it
+if(window.location.pathname == "/items"){
+    $(".table tbody td a.delete").click(function(){
+        var id = $(this).attr("data-id")
+
+        var request = {
+            "url" : `http://localhost:3000/api/item/${id}`,
+            "method" : "DELETE"
+        }
+
+        if(confirm("Do you really want to delete this record?")){
+            $.ajax(request).done(function(response){
+                alert("Data Deleted Successfully!");
                 location.reload();
             })
         }
