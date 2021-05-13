@@ -1,0 +1,18 @@
+		<% for(var i = 0; i < invites.length; i++) { %>
+			<tr>
+				<td><%= i + 1 %></td>
+				<td>
+					<p>Sent from: <%= invites[i].sender %></p>
+					<p>ID OF : <%= invites[i]._id%></p>
+					<p>To <%= invites[i].eventname %></p>
+				</td>
+				<td>
+					<a href="/invite-accept?id=<%= invites[i]._id%>" class="btn border-shadow update">
+						<span class="text-gradient"><i class="fas fa-check"></i></span>
+					</a>
+					<a href="/invite-reject?id=<%= invites[i]._id%>" class="btn border-shadow update">
+						<span class="text-gradient"><i class="fas fa-times"></i></span>
+					</a>
+				</td>
+			</tr>
+		<% } %>

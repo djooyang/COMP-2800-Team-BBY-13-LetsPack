@@ -38,6 +38,13 @@ function validateForm(dataToValidate) {
 }
 
 
+$("#accept-invite").click(function(event){
+	event.preventDefault();
+	console.log("HI");
+	let data = $("#accept-invite");
+	console.log(data);
+})
+
 $("#add_user").submit(function(event){
 	event.preventDefault();
 			var unindexed_array = $(this).serializeArray();
@@ -71,7 +78,6 @@ $("#add_event").submit(function(event){
 			$.map(unindexed_array, function(n, i){
 					data[n['name']] = n['value']
 			})
-
 //		if (validateForm(data)) {  NEED TO VALIDATE LATER
 			var request = {
 					"url" : `http://localhost:3000/api/events`,
@@ -109,6 +115,33 @@ $("#signup").submit(function(event){
 //    }
 
 })
+
+
+
+$("#send-invite").submit(function(event){
+	event.preventDefault();
+			var unindexed_array = $(this).serializeArray();
+			var data = {}
+
+			$.map(unindexed_array, function(n, i){
+					data[n['name']] = n['value']
+			})
+//		if (validateForm(data)) {  NEED TO VALIDATE LATER
+			var request = {
+					"url" : `http://localhost:3000/api/invites`,
+					"method" : "POST",
+					"data" : data
+			}
+
+			$.ajax(request).done(function(response){
+					alert("Data Inserted Successfully!");
+			})
+
+//    }
+
+})
+
+
 
 
 $("#update_user").submit(function(event){

@@ -3,6 +3,9 @@
         <td><%= i + 1 %></td>
         <td><%= events[i].name %></td>
         <td>
+            <a href="/invite-create?id=<%= events[i]._id%>" class="btn border-shadow update">
+                <span class="text-gradient">Share</span>
+            </a>
             <a href="/update-event?id=<%= events[i]._id%>" class="btn border-shadow update">
                 <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
             </a>
