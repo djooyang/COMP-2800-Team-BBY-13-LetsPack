@@ -1,0 +1,17 @@
+<% for(var i = 0; i < item.length; i++) { %>
+<tr>
+    <td><%= i + 1 %></td>
+    <td><%= item[i].name %></td>
+    <td><%= item[i].qty %></td>
+    <td><%= item[i].des %></td>
+    <td><%= item[i].owner %></td>
+    <td>
+        <a href="/update-item?id=<%= item[i]._id%>" class="btn border-shadow update">
+            <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
+        </a>
+        <a class="btn border-shadow delete" data-id=<%= item[i]._id%>>
+            <span class="text-gradient"><i class="fas fa-times"></i></span>
+        </a>
+    </td>
+</tr>
+<% } %>
