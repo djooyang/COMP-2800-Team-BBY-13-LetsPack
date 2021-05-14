@@ -79,7 +79,7 @@ $("#add_user").submit(function(event){
 			}
 
 			$.ajax(request).done(function(response){
-					alert("Data Inserted Successfully!");
+				window.location.replace("/login");
 			})
 
     }
@@ -126,7 +126,7 @@ $("#signup").submit(function(event){
 					"data" : data
 			}
 			$.ajax(request).done(function(response){
-					alert("Data Inserted Successfully!");
+					window.location.replace("/login");
 			})
 
 //    }
