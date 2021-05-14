@@ -8,7 +8,7 @@
     <div class="container">
         <div class="box-nav d-flex justify-between">
            <div class="filter">
-               <a href="/items"><i class="fas fa-angle-double-left"></i>Items</a>
+               <a href="/items?id=<%= item.eventId %>"><i class="fas fa-angle-double-left"></i>Items</a>
            </div>
         </div>
         <div class="form-title text-center">
@@ -22,25 +22,19 @@
     <div class="new_user">
         <div class="form-group">
             
-            <div>
-                <label for="name" class="text-light">Item Name</label>
-                <input type="hidden" name="id" value="<%= item._id %>">
-                <input type="text" name="name" value="<%= item.name %>" placeholder="Frying pen">
-    
-            </div>
-            <div>
-                <label for="qty" class="text-light">Quantity</label>
-                <input type="number" name="qty" value="<%= item.qty %>" placeholder="Quantity">
-            </div>
-            <div>
-                <label for="des" class="text-light">Description</label>
-                <input type="text" name="des" value="<%= item.des %>" placeholder="Description about item">
-            </div>
-            <div>
-                <label for="owner" class="text-light">Owner</label>
-                <input type="text" name="owner" value="<%= item.owner %>" placeholder="Owner">
-            </div>
-
+             <div>
+                 <label for="item" class="text-light">Item Name</label>
+                 <input type="hidden" name="id" value="<%= item._id %>">
+                 <input type="text" name="item" value="<%= item.name %>" placeholder="Frying pen">
+             </div>
+             <div>
+                 <label for="qty" class="text-light">Quantity</label>
+                 <input type="number" name="qty" value="<%= item.qty %>" placeholder="Quantity">
+             </div>
+             <div>
+                 <input type="hidden" name="owner" value="<%= item.owner %>">
+							   <input type="hidden" name="eventId" value="<%= item.eventId %>">
+             </div>
 
 
 

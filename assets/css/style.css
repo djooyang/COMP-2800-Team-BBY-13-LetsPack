@@ -21,6 +21,7 @@ a {
 .container{
     max-width: 1024px;
     margin: auto;
+    margin-top: 15pt;
 }
 
 .nav-brand{
@@ -67,7 +68,7 @@ a {
 
 #header nav{
     background-color: #06d6a0;
-    padding: 1em 0;
+    padding-bottom: 1em;
     width: 100%;
 }
 
@@ -125,6 +126,11 @@ table{
 }
 
 @media only screen and (max-width: 1024px){
+
+		.table td > a.btn {
+				display: block;
+		}
+
     table, thead, tbody, th, td, tr{
         display: block;
     }

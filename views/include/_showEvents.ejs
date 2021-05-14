@@ -1,16 +1,18 @@
 <% for(var i = 0; i < events.length; i++) { %>
     <tr>
-        <td><%= i + 1 %></td>
         <td><%= events[i].name %></td>
         <td>
+					  <a href="/items?id=<%= events[i]._id%>" class="btn border-shadow update">
+                <span class="text-gradient">Open</span>
+            </a>
             <a href="/invite-create?id=<%= events[i]._id%>" class="btn border-shadow update">
                 <span class="text-gradient">Share</span>
             </a>
             <a href="/update-event?id=<%= events[i]._id%>" class="btn border-shadow update">
-                <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
+                <span class="text-gradient">Edit</span>
             </a>
             <a class="btn border-shadow delete" data-id=<%= events[i]._id%> >
-                <span class="text-gradient"><i class="fas fa-times"></i></span>
+                <span class="text-gradient">Delete</i></span>
             </a>
         </td>
     </tr>

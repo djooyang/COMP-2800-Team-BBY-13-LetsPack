@@ -52,7 +52,7 @@ exports.items = (req, res) =>{
 }
 
 exports.add_item = (req, res) =>{
-    res.render('add_item');
+    res.render('add_item', {event : req.query.id});
 }
 
 
@@ -64,7 +64,6 @@ exports.add_user = (req, res) =>{
 }
 
 exports.signup = (req, res) =>{
-    console.log(req.body);
     res.render('signup');
 }
 
@@ -136,6 +135,9 @@ exports.new_event = (req, res) =>{
 	res.render('new_event');
 }
 
+exports.badURL = (req, res) =>{
+	res.redirect('/')
+}
 /*
 exports.login = (req, res) =>{
     axios.get('https://letspack.herokuapp.com/login')
