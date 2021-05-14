@@ -7,12 +7,12 @@
     <!-- Main Site -->
     <main id="site-main">
         <div class="container">
-            <div class="box-nav d-flex justify-between">
-                <a href="/add-item" class="border-shadow">
-
-
-                        <!---->
-                    <span class="text-gradient">New Item <i class="fas fa-user"></i></span>
+            <div class="box-nav d-flex">
+							  <a href="/profile" class="border-shadow">
+                    <span class="text-gradient">Profile</span>
+                </a>
+                <a href="/add-item?id=<%= event %>" class="border-shadow">
+                    <span class="text-gradient">New Item</span>
                 </a>
             </div>
 
@@ -21,10 +21,8 @@
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th>Number</th>
                             <th>Name of Item</th>
                             <th>Quantity</th>
-                            <th>Description</th>
                             <th>Owner</th>
                         </tr>
                     </thead>

@@ -37,6 +37,23 @@ function validateForm(dataToValidate) {
 
 }
 
+$(".claimItem").click(function(event){
+	event.preventDefault();
+	let itemId = {item: this.value};
+	var request = {
+		"url" : `claim-item`,
+		"method" : "POST",
+		"data" : itemId
+	}
+	console.log(itemId);
+	
+				$.ajax(request).done(function(response){
+					location.reload();
+			})
+	
+})
+
+
 
 $("#accept-invite").click(function(event){
 	event.preventDefault();
@@ -56,7 +73,7 @@ $("#add_user").submit(function(event){
 
 		if (validateForm(data)) {
 			var request = {
-					"url" : `https://letspack.herokuapp.com/api/users`,
+					"url" : `http://localhost:3000/api/users`,
 					"method" : "POST",
 					"data" : data
 			}
@@ -80,7 +97,7 @@ $("#add_event").submit(function(event){
 			})
 //		if (validateForm(data)) {  NEED TO VALIDATE LATER
 			var request = {
-					"url" : `https://letspack.herokuapp.com/api/events`,
+					"url" : `http://localhost:3000/api/events`,
 					"method" : "POST",
 					"data" : data
 			}
@@ -104,7 +121,7 @@ $("#signup").submit(function(event){
 
 //		if (validateForm(data)) {  NEED TO VALIDATE LATER
 			var request = {
-					"url" : `https://letspack.herokuapp.com/api/signup`,
+					"url" : `http://localhost:3000/api/signup`,
 					"method" : "POST",
 					"data" : data
 			}
@@ -127,7 +144,7 @@ $("#add_item").submit(function(item){
 
 //		if (validateForm(data)) {  NEED TO VALIDATE LATER
 			var request = {
-					"url" : `https://letspack.herokuapp.com/api/items`,
+					"url" : `http://localhost:3000/api/items`,
 					"method" : "POST",
 					"data" : data
 			}
@@ -153,7 +170,7 @@ $("#send-invite").submit(function(event){
 			})
 //		if (validateForm(data)) {  NEED TO VALIDATE LATER
 			var request = {
-					"url" : `https://letspack.herokuapp.com/api/invites`,
+					"url" : `http://localhost:3000/api/invites`,
 					"method" : "POST",
 					"data" : data
 			}
@@ -181,7 +198,7 @@ $("#update_user").submit(function(event){
 
 		if (validateForm(data)) {
 			var request = {
-					"url" : `https://letspack.herokuapp.com/api/users/${data.id}`,
+					"url" : `http://localhost:3000/api/users/${data.id}`,
 					"method" : "PUT",
 					"data" : data
 			}
@@ -207,7 +224,7 @@ $("#update_event").submit(function(event){
 
 //		if (validateForm(data)) { NEED TO DO VALIDATION LATER
 			var request = {
-					"url" : `https://letspack.herokuapp.com/api/event/${data.id}`,
+					"url" : `http://localhost:3000/api/event/${data.id}`,
 					"method" : "PUT",
 					"data" : data
 			}
@@ -232,7 +249,7 @@ $("#update_item").submit(function(item){
 
 //		if (validateForm(data)) { NEED TO DO VALIDATION LATER
 			var request = {
-					"url" : `https://letspack.herokuapp.com/api/item/${data.id}`,      //
+					"url" : `http://localhost:3000/api/item/${data.id}`,      //
 					"method" : "PUT",
 					"data" : data
 			}
@@ -252,7 +269,7 @@ if(window.location.pathname == "/"){
         var id = $(this).attr("data-id")
 
         var request = {
-            "url" : `https://letspack.herokuapp.com/api/users/${id}`,
+            "url" : `http://localhost:3000/api/users/${id}`,
             "method" : "DELETE"
         }
 
@@ -271,7 +288,7 @@ if(window.location.pathname == "/profile"){
         var id = $(this).attr("data-id")
 
         var request = {
-            "url" : `https://letspack.herokuapp.com/api/events/${id}`,
+            "url" : `http://localhost:3000/api/events/${id}`,
             "method" : "DELETE"
         }
 
@@ -284,19 +301,19 @@ if(window.location.pathname == "/profile"){
     })
 }
 
+
 //Deletes a item and updates the page to show it
 if(window.location.pathname == "/items"){
     $(".table tbody td a.delete").click(function(){
         var id = $(this).attr("data-id")
 
         var request = {
-            "url" : `https://letspack.herokuapp.com/api/item/${id}`,
+            "url" : `http://localhost:3000/api/item/${id}`,
             "method" : "DELETE"
         }
 
         if(confirm("Do you really want to delete this record?")){
             $.ajax(request).done(function(response){
-                alert("Data Deleted Successfully!");
                 location.reload();
             })
         }

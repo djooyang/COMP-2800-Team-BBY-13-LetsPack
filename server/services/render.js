@@ -5,7 +5,7 @@ const axios = require('axios');
 //gets all the users and passes them to the index page when it's constructed
 exports.homeRoutes = (req, res) => {
     // Make a get request to /api/users
-    axios.get('https://letspack.herokuapp.com/api/users')
+    axios.get('http://localhost:3000/api/users')
         .then(function(response){
             res.render('login', { users : response.data });
         })
@@ -52,7 +52,7 @@ exports.items = (req, res) =>{
 }
 
 exports.add_item = (req, res) =>{
-    res.render('add_item');
+    res.render('add_item', {event : req.query.id});
 }
 
 
@@ -64,12 +64,11 @@ exports.add_user = (req, res) =>{
 }
 
 exports.signup = (req, res) =>{
-    console.log(req.body);
     res.render('signup');
 }
 
 exports.update_user = (req, res) =>{
-    axios.get('https://letspack.herokuapp.com/api/users', { params : { id : req.query.id }})
+    axios.get('http://localhost:3000/api/users', { params : { id : req.query.id }})
         .then(function(userdata){
             res.render("update_user", { user : userdata.data})
         })
@@ -79,7 +78,7 @@ exports.update_user = (req, res) =>{
 }
 
 exports.update_user = (req, res) =>{
-    axios.get('https://letspack.herokuapp.com/api/users', { params : { id : req.query.id }})
+    axios.get('http://localhost:3000/api/users', { params : { id : req.query.id }})
         .then(function(userdata){
             res.render("update_user", { user : userdata.data})
         })
@@ -136,6 +135,9 @@ exports.new_event = (req, res) =>{
 	res.render('new_event');
 }
 
+exports.badURL = (req, res) =>{
+	res.redirect('/')
+}
 /*
 exports.login = (req, res) =>{
     axios.get('https://letspack.herokuapp.com/login')
