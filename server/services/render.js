@@ -113,6 +113,7 @@ exports.invite_create = (req, res) =>{
 						.catch(err =>{
 							res.send(err);
 						})
+                    }
 
 exports.update_item = (req, res) =>{
 
@@ -124,6 +125,7 @@ exports.update_item = (req, res) =>{
                     .catch(err =>{
                         res.send(err);
                     })
+                }
 
 
 exports.login = (req, res) =>{
