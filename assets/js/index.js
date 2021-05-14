@@ -37,6 +37,23 @@ function validateForm(dataToValidate) {
 
 }
 
+$(".claimItem").click(function(event){
+	event.preventDefault();
+	let itemId = {item: this.value};
+	var request = {
+		"url" : `claim-item`,
+		"method" : "POST",
+		"data" : itemId
+	}
+	console.log(itemId);
+	
+				$.ajax(request).done(function(response){
+					location.reload();
+			})
+	
+})
+
+
 
 $("#accept-invite").click(function(event){
 	event.preventDefault();
@@ -284,6 +301,7 @@ if(window.location.pathname == "/profile"){
     })
 }
 
+
 //Deletes a item and updates the page to show it
 if(window.location.pathname == "/items"){
     $(".table tbody td a.delete").click(function(){
@@ -296,7 +314,6 @@ if(window.location.pathname == "/items"){
 
         if(confirm("Do you really want to delete this record?")){
             $.ajax(request).done(function(response){
-                alert("Data Deleted Successfully!");
                 location.reload();
             })
         }

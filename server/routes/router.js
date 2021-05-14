@@ -109,7 +109,6 @@ route.get('/edit/:id', function(req, res){
 
 route.put('/edit', function(req, res){
     db.collection('post').updateOne({ _id : parseInt(req.body.id) },{$set : {제목 : req.body.title, 날짜: req.body.date}}, function(error, result){
-      console.log('Update complete')
       res.redirect('/list')
     })
 })
@@ -135,9 +134,7 @@ route.post('/login', passport.authenticate('local', {
 
   failureRedirect : '/login'
 }),function(req, res){
-		console.log("CALLED POST/LOGIN");
   res.redirect('/profile')
-  console.log(req.user);
 });
 
 /* routing login page*/
@@ -249,9 +246,8 @@ var  ItemDb = require('../model/item')
 
 route.get('/items', function(req, res){
   //디비에 저장된 post라는 collection안의 모든 데이터를 꺼내주세요
- db.collection('items').find().toArray(function(error, result){
-     console.log(result);
-     res.render('items.ejs', { item : result}); // 코드위치 확인
+ db.collection('items').find({eventId : req.query.id}).toArray(function(error, result){
+     res.render('items.ejs', { item : result, event : req.query.id}); // 코드위치 확인
  });
 });
 
@@ -301,7 +297,6 @@ route.get('/new-event', services.new_event);
 
 route.get('/add-item', services.add_item);
 
-
 /**
  * @description update Route
  * @method GET /update-user
@@ -321,6 +316,7 @@ route.post('/api/signup', controller.signup);
 route.post('/api/events', controller.createEvent);
 route.post('/api/invites', controller.createInvite);
 
+route.post('/claim-item', controller.claimItem);
 route.post('/api/items', controller.createItem);
 route.get('/api/users', controller.find);
 route.put('/api/users/:id', controller.update);
@@ -347,4 +343,5 @@ module.exports = route
  * @method GET /login
  */
   route.get('/signup', services.signup);
- 
+
+route.use(services.badURL);

@@ -1,11 +1,14 @@
 <% for(var i = 0; i < item.length; i++) { %>
 <tr>
-    <td><%= i + 1 %></td>
+
     <td><%= item[i].name %></td>
-    <td><%= item[i].qty %></td>
-    <td><%= item[i].des %></td>
+    <td>X <%= item[i].qty %></td>
     <td><%= item[i].owner %></td>
+
     <td>
+        <button value="<%= item[i]._id%>" class="claimItem">
+            <span class="text-gradient">Claim</span>
+        </button>
         <a href="/update-item?id=<%= item[i]._id%>" class="btn border-shadow update">
             <span class="text-gradient">Edit</span>
         </a>

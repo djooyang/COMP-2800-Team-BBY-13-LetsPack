@@ -36,7 +36,7 @@ exports.signup = (req,res)=>{
     // save user in the database
     login.save(login)
         .then(data => {
-            console.log(login);
+
             res.redirect('/login');
         })
         .catch(err =>{
@@ -110,7 +110,7 @@ exports.createEvent = (req,res)=>{
 
 
 exports.createInvite = (req,res)=>{
-	console.log("CALLED CREATE INVITE IN CONTROLLER");
+
     // validate request
     if(!req.body){
         res.status(400).send({ message : "Content can not be emtpy!"});
@@ -219,7 +219,47 @@ exports.updateEvent = (req, res)=>{
         })
 }
 
+exports.claimItem = (req, res)=>{
 
+    const id = sanitizeHtml(req.body.item);
+
+        ItemDb.findById(id)
+            .then(data =>{
+                if(!data){
+                    res.status(404).send({ message : "Not found user with id "+ id})
+                }else{
+                    if (data.owner === req._passport.session.user) {
+											ItemDb.findByIdAndUpdate(id, {owner : ""}, { useFindAndModify: false})
+													.then(data => {
+															if(!data){
+																	res.status(404).send({ message : `Cannot Update item with ${id}. Maybe event not found!`})
+															}else{
+																	res.send(data)
+															}
+													})
+													.catch(err =>{
+															res.status(500).send({ message : "Error Update item information"})
+													})
+										} else {
+											ItemDb.findByIdAndUpdate(id, {owner : req._passport.session.user}, { useFindAndModify: false})
+													.then(data => {
+															if(!data){
+																	res.status(404).send({ message : `Cannot Update item with ${id}. Maybe event not found!`})
+															}else{
+																	res.send(data)
+															}
+													})
+													.catch(err =>{
+															res.status(500).send({ message : "Error Update item information"})
+													})
+										}
+                }
+            })
+            .catch(err =>{
+                res.status(500).send({ message: "Erro retrieving user with id " + id})
+            })
+
+}
 //exports.update_event = (req, res) =>{
 //
 //		Event.findById(req.query.id)
@@ -234,7 +274,7 @@ exports.updateEvent = (req, res)=>{
 
 // Update a new identified event by event id
 exports.acceptInvite = (req, res)=>{
-	console.log("ACCEPTING INVITE");
+
     if(!req.body){
         return res
             .status(400)
@@ -266,7 +306,7 @@ exports.acceptInvite = (req, res)=>{
 
 
 exports.rejectInvite = (req, res)=>{
-	console.log("REJECTING INVITE");
+
     if(!req.body){
         return res
             .status(400)
@@ -349,8 +389,8 @@ exports.createItem = (req,res)=>{
     // new event
     const item = new ItemDb({
         name : req.body.item,
+        eventId : req.body.eventId,
         qty : req.body.qty,
-        des : req.body.des,
         owner : req.body.owner
 
     })
@@ -370,7 +410,7 @@ exports.createItem = (req,res)=>{
 
 // Update a new identified item by item id
 exports.updateItem = (req, res)=>{
-	console.log("UPDATE ITEM CALLED");
+
     if(!req.body){
 
         return res
@@ -379,7 +419,7 @@ exports.updateItem = (req, res)=>{
     }
 
 //		sanitizeHtmlOfBody(req.body); NEED TO SANITIZE LATER
-console.log(req.params.id);
+
     const id = sanitizeHtml(req.params.id);
     ItemDb.findByIdAndUpdate(id, req.body, { useFindAndModify: false})
         .then(data => {

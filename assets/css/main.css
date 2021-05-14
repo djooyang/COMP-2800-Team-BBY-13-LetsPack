@@ -31,6 +31,10 @@
     background: rgb(14, 14, 14);
   }
 
+.tableButton {
+	display: block;
+}
+
 .student {
 	display: block;
 	text-align: center;

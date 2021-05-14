@@ -7,18 +7,19 @@ var schema = new mongoose.Schema({
         type : String,
         required: true
     },
-    
-    qty : {
-		type : Number,
-        required: true
-	},
-    des : {
+    eventId : {
         type : String,
+        required: true
+		},
+    qty : {
+        type : Number,
         required: true
     },
+    des : {
+        type : String
+    },
     owner : {
-        type : String,
-        required: true
+        type : String
     }
 })
 
