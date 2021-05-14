@@ -127,7 +127,7 @@ $("#add_item").submit(function(item){
 
 //		if (validateForm(data)) {  NEED TO VALIDATE LATER
 			var request = {
-					"url" : `http://localhost:3000/api/items`,
+					"url" : `https://letspack.herokuapp.com/api/items`,
 					"method" : "POST",
 					"data" : data
 			}
@@ -232,7 +232,7 @@ $("#update_item").submit(function(item){
 
 //		if (validateForm(data)) { NEED TO DO VALIDATION LATER
 			var request = {
-					"url" : `http://localhost:3000/api/item/${data.id}`,      //
+					"url" : `https://letspack.herokuapp.com/api/item/${data.id}`,      //
 					"method" : "PUT",
 					"data" : data
 			}
@@ -290,7 +290,7 @@ if(window.location.pathname == "/items"){
         var id = $(this).attr("data-id")
 
         var request = {
-            "url" : `http://localhost:3000/api/item/${id}`,
+            "url" : `https://letspack.herokuapp.com/api/item/${id}`,
             "method" : "DELETE"
         }
 
