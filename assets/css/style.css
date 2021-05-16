@@ -129,6 +129,7 @@ table{
 .dynamic-td {
 	border: solid;
 	border-width: 2px;
+	border-color: #9ee2de;
 }
 
 .dynamic-td-btns {
