@@ -132,8 +132,14 @@ table{
 	border-color: #9ee2de;
 }
 
+.dynamic-td > td {
+	max-width: 450px;
+}
+
 .dynamic-td-btns {
 	min-width: 400px;
+	display: flex;
+	justify-content: center;
 }
 
 .dynamic-td:hover{
