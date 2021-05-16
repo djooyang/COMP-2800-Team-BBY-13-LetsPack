@@ -1,3 +1,7 @@
+body {
+	background-color: #52cac3;
+}
+
 .container_nav {
     background-color: rgb(70, 70, 70);
     margin: auto;
@@ -7,7 +11,7 @@
 
   .hambergerMeun {
     overflow: hidden;
-    background-color: #333;
+    background-color: #0074e1;
     position: relative;
   }
 
@@ -28,7 +32,7 @@
     position: absolute;
     right: 0;
     top: 0;
-    background: rgb(14, 14, 14);
+    background: #0065c5;
   }
 
 .tableButton {
@@ -68,7 +72,8 @@
   }
   .form-group > input{
     display: inline-block;
-    width: 30%;
+    font-size: 1rem;
+    border: none;
   }
   #inputContainer button{
     padding: 5px;

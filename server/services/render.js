@@ -4,32 +4,17 @@ const axios = require('axios');
 
 //gets all the users and passes them to the index page when it's constructed
 exports.homeRoutes = (req, res) => {
-    // Make a get request to /api/users
-    axios.get('https://letspack.herokuapp.com/api/users')
-        .then(function(response){
-            res.render('login', { users : response.data });
-        })
-        .catch(err =>{
-            res.send(err);
-        })
-
-    
-}
-
-//gets all the events and passes them to the profile page when it's constructed
-exports.profile = (req, res) => {
-    // Make a get request to /api/users
-    axios.get('profile', { params : { email : req.query.email}})
-        .then(function(response){
-            res.render('profile', { events : response.data });
-        })
-        .catch(err =>{
-            res.send(err);
-        })
+        res.render('login');
 }
 
 
+exports.login = (req, res) => {
+	res.render('login.ejs');
+}
 
+exports.about = (req, res) => {
+	res.render('about.ejs');
+}
 
 
 //****************Item part*********************** */
@@ -68,7 +53,7 @@ exports.signup = (req, res) =>{
 }
 
 exports.update_user = (req, res) =>{
-    axios.get('https://letspack.herokuapp.com//api/users', { params : { id : req.query.id }})
+    axios.get('http://localhost:3000//api/users', { params : { id : req.query.id }})
         .then(function(userdata){
             res.render("update_user", { user : userdata.data})
         })
@@ -78,7 +63,7 @@ exports.update_user = (req, res) =>{
 }
 
 exports.update_user = (req, res) =>{
-    axios.get('https://letspack.herokuapp.com//api/users', { params : { id : req.query.id }})
+    axios.get('http://localhost:3000//api/users', { params : { id : req.query.id }})
         .then(function(userdata){
             res.render("update_user", { user : userdata.data})
         })
@@ -138,14 +123,3 @@ exports.new_event = (req, res) =>{
 exports.badURL = (req, res) =>{
 	res.redirect('/')
 }
-/*
-exports.login = (req, res) =>{
-    axios.get('https://letspack.herokuapp.com/login')
-        .then(function(){
-            req.render('login')
-        })
-        .catch(err =>{
-            res.send(err);
-        })
-}
-*/

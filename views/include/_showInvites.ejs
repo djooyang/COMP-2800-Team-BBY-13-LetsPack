@@ -1,17 +1,16 @@
 		<% for(var i = 0; i < invites.length; i++) { %>
-			<tr>
+			<tr class="dynamic-td">
 				<td><%= i + 1 %></td>
 				<td>
-					<p>Sent from: <%= invites[i].sender %></p>
-					<p>ID OF : <%= invites[i]._id%></p>
-					<p>To <%= invites[i].eventname %></p>
+					<p><span class="td-client-info">Invite From: <%= invites[i].sender %></span></p>
+					<p><span class="td-client-info">Join: <%= invites[i].eventname %></span></p>
 				</td>
 				<td>
 					<a href="/invite-accept?id=<%= invites[i]._id%>" class="btn border-shadow update">
-						<span class="text-gradient">Accept</span>
+						<span>Accept</span>
 					</a>
 					<a href="/invite-reject?id=<%= invites[i]._id%>" class="btn border-shadow update">
-						<span class="text-gradient">Reject</span>
+						<span>Reject</span>
 					</a>
 				</td>
 			</tr>
