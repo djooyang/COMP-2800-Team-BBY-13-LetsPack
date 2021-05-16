@@ -6,12 +6,12 @@
             <input type="hidden" name="eventid" value="<%= event._id %>">
             <input type="hidden" name="sender" value="<%= sender %>">
             <input type="hidden" name="eventname" value="<%= event.name %>">
-            <input type="text" name="recipient" value="" placeholder="example@email.com">
+            <input type="text" name="recipient" value="" placeholder="example@email.com" required>
         </div>
 
 
         <div class="form-group">
-            <button type="submit" class="btn text-dark update">Send</button>
+            <button type="submit" class="button-addition update">Send</button>
         </div>
 
     </div>

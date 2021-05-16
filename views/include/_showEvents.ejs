@@ -1,18 +1,18 @@
 <% for(var i = 0; i < events.length; i++) { %>
-    <tr>
-        <td><%= events[i].name %></td>
-        <td>
+    <tr class="dynamic-td">
+			<td><span class="td-client-info"><%= events[i].name %></span></td>
+        <td class="dynamic-td-btns">
 					  <a href="/items?id=<%= events[i]._id%>" class="btn border-shadow update">
-                <span class="text-gradient">Open</span>
+                <span>Open</span>
             </a>
             <a href="/invite-create?id=<%= events[i]._id%>" class="btn border-shadow update">
-                <span class="text-gradient">Share</span>
+                <span>Share</span>
             </a>
             <a href="/update-event?id=<%= events[i]._id%>" class="btn border-shadow update">
-                <span class="text-gradient">Edit</span>
+                <span>Edit</span>
             </a>
             <a class="btn border-shadow delete" data-id=<%= events[i]._id%> >
-                <span class="text-gradient">Delete</i></span>
+                <span>Delete</span>
             </a>
         </td>
     </tr>

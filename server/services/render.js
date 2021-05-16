@@ -4,32 +4,17 @@ const axios = require('axios');
 
 //gets all the users and passes them to the index page when it's constructed
 exports.homeRoutes = (req, res) => {
-    // Make a get request to /api/users
-    axios.get('https://letspack.herokuapp.com/api/users')
-        .then(function(response){
-            res.render('login', { users : response.data });
-        })
-        .catch(err =>{
-            res.send(err);
-        })
-
-    
-}
-
-//gets all the events and passes them to the profile page when it's constructed
-exports.profile = (req, res) => {
-    // Make a get request to /api/users
-    axios.get('profile', { params : { email : req.query.email}})
-        .then(function(response){
-            res.render('profile', { events : response.data });
-        })
-        .catch(err =>{
-            res.send(err);
-        })
+        res.render('login');
 }
 
 
+exports.login = (req, res) => {
+	res.render('login.ejs');
+}
 
+exports.about = (req, res) => {
+	res.render('about.ejs');
+}
 
 
 //****************Item part*********************** */
@@ -55,37 +40,10 @@ exports.add_item = (req, res) =>{
     res.render('add_item', {event : req.query.id});
 }
 
-
-
-
-
-exports.add_user = (req, res) =>{
-    res.render('add_user');
-}
-
 exports.signup = (req, res) =>{
     res.render('signup');
 }
 
-exports.update_user = (req, res) =>{
-    axios.get('https://letspack.herokuapp.com//api/users', { params : { id : req.query.id }})
-        .then(function(userdata){
-            res.render("update_user", { user : userdata.data})
-        })
-        .catch(err =>{
-            res.send(err);
-        })
-}
-
-exports.update_user = (req, res) =>{
-    axios.get('https://letspack.herokuapp.com//api/users', { params : { id : req.query.id }})
-        .then(function(userdata){
-            res.render("update_user", { user : userdata.data})
-        })
-        .catch(err =>{
-            res.send(err);
-        })
-}
 
 var Event = require('../model/event');
 var ItemDb = require('../model/item');
@@ -138,14 +96,3 @@ exports.new_event = (req, res) =>{
 exports.badURL = (req, res) =>{
 	res.redirect('/')
 }
-/*
-exports.login = (req, res) =>{
-    axios.get('https://letspack.herokuapp.com/login')
-        .then(function(){
-            req.render('login')
-        })
-        .catch(err =>{
-            res.send(err);
-        })
-}
-*/

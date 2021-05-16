@@ -1,19 +1,19 @@
 <% for(var i = 0; i < item.length; i++) { %>
-<tr>
+<tr class="dynamic-td">
 
-    <td><%= item[i].name %></td>
-    <td>X <%= item[i].qty %></td>
-    <td><%= item[i].owner %></td>
+    <td><span class="td-client-info"><%= item[i].name %></span></td>
+    <td><span class="td-client-info">Qty: <%= item[i].qty %></span></td>
+    <td><span class="td-client-info"><%= item[i].owner %></span></td>
 
-    <td>
+    <td class="dynamic-td-btns">
         <button value="<%= item[i]._id%>" class="claimItem">
-            <span class="text-gradient">Claim</span>
+            <span>Claim</span>
         </button>
         <a href="/update-item?id=<%= item[i]._id%>" class="btn border-shadow update">
-            <span class="text-gradient">Edit</span>
+            <span>Edit</span>
         </a>
         <a class="btn border-shadow delete" data-id=<%= item[i]._id%>>
-            <span class="text-gradient">Delete</i></span>
+            <span>Delete</span>
         </a>
     </td>
 </tr>
