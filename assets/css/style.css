@@ -167,9 +167,6 @@ table{
 			max-width: 600px;
 	}
 
-	.claimItem {
-		width: -webkit-fill-available;
-	}
 
 		.table td > a.btn, .claimItem {
 				display: block;
@@ -200,6 +197,10 @@ table{
 	.dynamic-td-btns {
 		display: block;
 		width: 9rem;
+	}
+
+	.claimItem {
+		width: -webkit-fill-available;
 	}
 }
 

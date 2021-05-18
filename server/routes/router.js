@@ -3,6 +3,10 @@
 const express= require('express');
 const bodyParser= require('body-parser')
 const app = express()
+const morgan = require('morgan');
+const path = require('path');
+const rfs = require('rotating-file-stream');
+const fs = require("fs");
 const route = express.Router();
 const sanitizeHtml = require('sanitize-html');
 
@@ -32,6 +36,15 @@ MongoClient.connect('mongodb+srv://lunaticky:rhanchd6@cluster0.rfmec.mongodb.net
 
 
 route.use(filter(options, {dispatchToErrorHandler: true}));
+
+
+const accessLogStream = rfs.createStream('access.log', {
+  interval: '1d', // rotate daily
+  path: path.join(__dirname, '../logs')
+});
+
+route.use(morgan(':referrer :url :user-agent',
+               { stream: accessLogStream }));
 
 
 /**
