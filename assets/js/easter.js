@@ -9,7 +9,7 @@ function egg() {
 	document.getElementsByClassName("container_nav")[0].style.backgroundColor = "rgb(64 0 0)";
 	document.getElementsByClassName("hambergerMeun")[0].style.backgroundColor = "#421919";
 	document.getElementsByClassName("icon")[0].style.backgroundColor = "rgb(50 21 21)";
-	document.getElementsByClassName("active")[0].innerHTML = "FryingPan";
+	document.getElementById("projectName").innerHTML = "FryingPan";
 	document.getElementById("intro").innerHTML = "We on the FryingPan team are a group of frying pan loving software developers living in beautiful British Columbia. We maintain a minimum of three pans\nin our workplace at all times. If one of us brings a pan, we can count on our team mates to also bring a pan. We're making FryingPan because we really\nwant to bring too many pans and we hope you do too!"
 }
 

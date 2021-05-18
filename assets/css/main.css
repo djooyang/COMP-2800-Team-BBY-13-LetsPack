@@ -2,6 +2,11 @@ body {
 	background-color: #52cac3;
 }
 
+.logo {
+height: 40px;
+width: auto;
+}
+
 .container_nav {
     background-color: rgb(70, 70, 70);
     margin: auto;
@@ -27,8 +32,15 @@ body {
     display: block;
   }
 
+.hambergerMeun a > * {
+    font-size: 1.5rem;
+    display: inline-block;
+    vertical-align: middle;
+}
+
   .hambergerMeun a.icon {
     display: block;
+		padding: 23px;
     position: absolute;
     right: 0;
     top: 0;
