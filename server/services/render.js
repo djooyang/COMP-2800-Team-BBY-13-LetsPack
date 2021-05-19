@@ -16,6 +16,14 @@ exports.about = (req, res) => {
 	res.render('about.ejs');
 }
 
+exports.chat = (req, res) => {
+	res.render('chat.ejs');
+}
+
+exports.chat2 = (req, res) => {
+	res.render('chat2.ejs');
+}
+
 
 //****************Item part*********************** */
 

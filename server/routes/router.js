@@ -46,6 +46,11 @@ route.get('/login', services.login);
 /* routing login page*/
 route.get('/about', services.about);
 
+/* routing to chat page*/ 
+route.get('/chat', services.chat);
+
+route.get('/chat2', services.chat2);
+
 
 //**********************AUTHENTICATION**************************
 /*add library for authentication*/
@@ -120,7 +125,8 @@ let invites = [];
 
 
 /*************    items  ************* */
-var  ItemDb = require('../model/item')
+var  ItemDb = require('../model/item');
+const { response } = require('express');
 
 route.get('/items', function(req, res){
   //디비에 저장된 post라는 collection안의 모든 데이터를 꺼내주세요
