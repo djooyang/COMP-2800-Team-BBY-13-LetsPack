@@ -2,9 +2,20 @@
  <form method="POST" id="add_event">
     <div class="new_user">
         <div class="form-group">
-            <label for="name" class="text-light">Name</label>
+
+            <div class="event-input">
+                <label for="name" class="text-light">Name</label>
             <input type="hidden"   name="id" value="">
             <input type="text" name="name" value="" placeholder="Camping" required>
+            </div>
+            <div class="event-input">
+                <label for="eventdate" class="text-light">Event date</label>
+                <input type="date" name="eventdate" value="" required>
+            </div>
+            <div class="event-input">
+                <label for="description" class="text-light" style="display : block; width: 200px">Event description</label>
+                <textarea type="text" name="description" placeholder="Explain about the event" rows="10" cols="30" value="" required></textarea>
+            </div>
         </div>
 
 

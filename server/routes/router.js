@@ -123,9 +123,12 @@ let invites = [];
 var  ItemDb = require('../model/item')
 
 route.get('/items', function(req, res){
+  let eventId = sanitizeHtml(req.query.id);
   //디비에 저장된 post라는 collection안의 모든 데이터를 꺼내주세요
- db.collection('items').find({eventId : sanitizeHtml(req.query.id)}).toArray(function(error, result){
-     res.render('items.ejs', { item : result, event : sanitizeHtml(req.query.id)}); // 코드위치 확인
+ db.collection('items').find({eventId : eventId}).toArray(function(error, result){
+   Event.findById(eventId).then(data => {
+    res.render('items.ejs', { item : result, event : eventId, eventData: data}); // 코드위치 확인
+   })
  });
 });
 
