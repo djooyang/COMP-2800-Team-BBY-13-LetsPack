@@ -7,12 +7,13 @@ var schema = new mongoose.Schema({
         type : String,
         required: true
     },
-    users : {
-			type : [String]
+    items : {
+			type : [],
+			required: true
 		}
 })
 
 
-const event = mongoose.model('event', schema);
+const starterpack = mongoose.model('starterpack', schema);
 
-module.exports = event;
+module.exports = starterpack;

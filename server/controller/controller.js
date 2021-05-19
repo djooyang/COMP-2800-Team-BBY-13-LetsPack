@@ -6,6 +6,7 @@ var Event = require('../model/event');
 var Login = require('../model/login');
 var Invite = require('../model/invite');
 var ItemDb = require('../model/item');
+var StarterPack = require('../model/starterpack');
 const sanitizeHtml = require('sanitize-html');
 
 /*add library for authentication*/
@@ -51,6 +52,20 @@ exports.signup = (req,res)=>{
 }
 
 
+const createItemsFromPack = (pack, idOfEvent)=> {
+	if (pack !== "none") {
+		StarterPack.findOne({name: pack}, function(err,obj) {
+			let newItems = [];
+			for (let i = 0; i < obj.items.length; i++) {
+				newItems[i] = {name: obj.items[i].name, eventId: idOfEvent, qty: obj.items[i].qty, owner: ""}
+			}
+				ItemDb.insertMany(newItems);
+		});
+	}
+	return;
+}
+
+
 // create and save new event
 exports.createEvent = (req,res)=>{
     // validate request
@@ -65,6 +80,8 @@ exports.createEvent = (req,res)=>{
         name : req.body.name,
 				users : [req._passport.session.user]
     })
+
+		createItemsFromPack(req.body.starterpack, event._id);
 
     // save event in the database
     event.save(event)
@@ -235,9 +252,15 @@ exports.deleteEvent = (req, res)=>{
             if(!data){
                 res.status(404).send({ message : `Cannot Delete with id ${id}. Maybe id is wrong`})
             }else{
-                res.send({
-                    message : "Event was deleted successfully!"
-                })
+                ItemDb.deleteMany({ eventId: id }).then(function(){
+                    res.send({
+                        message : "Event was deleted successfully!"
+                    })
+                }).catch(function(error){
+                    res.status(500).send({
+                        message: "Could not delete Items from the event with id=" + id
+                    });
+                });
             }
         })
         .catch(err =>{

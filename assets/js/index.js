@@ -213,11 +213,9 @@ if(window.location.pathname == "/profile"){
             "method" : "DELETE"
         }
 
-        if(confirm("Do you really want to delete this record?")){
-            $.ajax(request).done(function(response){
-                location.reload();
-            })
-        }
+        $.ajax(request).done(function(response){
+            location.reload();
+        })
 
     })
 }
@@ -233,11 +231,9 @@ if(window.location.pathname == "/items"){
             "method" : "DELETE"
         }
 
-        if(confirm("Do you really want to delete this record?")){
-            $.ajax(request).done(function(response){
-                location.reload();
-            })
-        }
+        $.ajax(request).done(function(response){
+            location.reload();
+        })
 
     })
 }

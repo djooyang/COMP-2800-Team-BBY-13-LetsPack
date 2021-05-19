@@ -39,7 +39,7 @@ route.use(filter(options, {dispatchToErrorHandler: true}));
 
 
 const accessLogStream = rfs.createStream('access.log', {
-  interval: '1d', // rotate daily
+  interval: '1d',
   path: path.join(__dirname, '../logs')
 });
 
