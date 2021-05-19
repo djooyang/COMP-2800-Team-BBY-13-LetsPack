@@ -82,6 +82,10 @@ width: auto;
     display: inline-block;
     width: 100px;
   }
+  .event-input {
+    margin : 20px;
+  }
+
   .form-group > input{
     display: inline-block;
     font-size: 1rem;

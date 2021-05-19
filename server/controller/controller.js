@@ -78,7 +78,9 @@ exports.createEvent = (req,res)=>{
     // new event
     const event = new Event({
         name : req.body.name,
-				users : [req._passport.session.user]
+		users : [req._passport.session.user],
+        eventdate : req.body.eventdate,
+        description : req.body.description
     })
 
 		createItemsFromPack(req.body.starterpack, event._id);

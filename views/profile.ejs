@@ -1,39 +1,38 @@
-
 <!-- include header -->
 <%- include('include/_header') %>
 <!-- /include header -->
 
 
-    <!-- Main Site -->
-    <main id="site-main">
-        <div class="container">
-						<h2 class="greeting"> Hello, <%= User.id %>! </h2>
-            <div class="box-nav d-flex justify-between">
-                <a href="/new-event" class="border-shadow">
-                    <span><i class="far fa-calendar-plus"></i>  New Event</span>
-                </a>
-            </div>
-
-            <!-- form handling -->
-            <form action="/" method="POST">
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Events</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <%- include('include/_showEvents.ejs') %>
-                    </tbody>
-                </table>
-																				<table class="miniBox">
-														<tbody>
-															<%- include('include/_showInvites.ejs') %>
-														</tbody>
-													</table>
-            </form>
+<!-- Main Site -->
+<main id="site-main">
+    <div class="container">
+        <h2 class="greeting"> Hello, <%= User.id %>! </h2>
+        <div class="box-nav d-flex justify-between">
+            <a href="/new-event" class="border-shadow">
+                <span><i class="far fa-calendar-plus"></i> New Event</span>
+            </a>
         </div>
-    </main>
+
+        <!-- form handling -->
+        <form action="/" method="POST">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Events</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%- include('include/_showEvents.ejs') %>
+                </tbody>
+            </table>
+            <table class="miniBox">
+                <tbody>
+                    <%- include('include/_showInvites.ejs') %>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</main>
 <!-- /Main Site -->
 
 

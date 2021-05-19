@@ -1,38 +1,56 @@
-
 <!-- include header -->
 <%- include('include/_header') %>
 <!-- /include header -->
 
 
-    <!-- Main Site -->
-    <main id="site-main">
-        <div class="container">
-            <div class="box-nav d-flex">
-							<div class="filter">
-								<a href="/profile"><i class="fas fa-angle-double-left"></i>Profile</a>
-							</div>
-                <a href="/add-item?id=<%= event %>" class="border-shadow">
-                    <span>New Item</span>
-                </a>
+<!-- Main Site -->
+<main id="site-main">
+    <div class="container">
+        <div class="box-nav d-flex">
+            <div class="filter">
+                <a href="/profile"><i class="fas fa-angle-double-left"></i>Profile</a>
+            </div>
+        </div>
+
+        <div class="box-nav d-flex">
+            <div class="filter">
+                <p><%= eventData.description %></p>
+            </div>
+        </div>
+
+        <div class="box-nav d-flex">
+
+            <div>
+                <div>
+                    Event : <%=  eventData.name %>
+                </div>
+                <div>
+                    Date : <%=  eventData.eventdate%>
+                </div>
             </div>
 
-            <!-- form handling -->
-            <form action="/" method="POST">
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Name of Item</th>
-                            <th>Quantity</th>
-                            <th>Owner</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <%- include('include/_showItem.ejs') %>
-                    </tbody>
-                </table>
-            </form>
+            <a href="/add-item?id=<%= event %>" class="border-shadow">
+                <span>New Item</span>
+            </a>
         </div>
-    </main>
+
+        <!-- form handling -->
+        <form action="/" method="POST">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Name of Item</th>
+                        <th>Quantity</th>
+                        <th>Owner</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%- include('include/_showItem.ejs') %>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</main>
 <!-- /Main Site -->
 
 

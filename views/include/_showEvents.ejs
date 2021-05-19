@@ -1,6 +1,9 @@
 <% for(var i = 0; i < events.length; i++) { %>
     <tr class="dynamic-td">
-			<td><span class="td-client-info"><%= events[i].name %></span></td>
+			<td>
+                <span class="td-client-info"><%= events[i].name %></span>
+                <span class="td-client-info"><%= events[i].eventdate %></span>
+            </td>
         <td class="dynamic-td-btns">
 					  <a href="/items?id=<%= events[i]._id%>" class="btn border-shadow update">
                 <span>Open</span>
