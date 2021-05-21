@@ -126,7 +126,7 @@ let invites = [];
 /*************    items  ************* */
 var  ItemDb = require('../model/item')
 
-route.get('/items', function(req, res){
+route.get('/items', isLogin, function(req, res){
   let events = [];
   let eventId = sanitizeHtml(req.query.id);
   //디비에 저장된 post라는 collection안의 모든 데이터를 꺼내주세요
@@ -172,15 +172,15 @@ route.get('/logout', function(req,res){
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 route.get('/signup', services.signup);
-route.get('/new-event', services.new_event);
-route.get('/add-item', services.add_item);
-route.get('/update-event', services.update_event);
-route.get('/update-item', services.update_item);
-route.get('/invite-create', services.invite_create);
-route.get('/preparations', services.preparation);
+route.get('/new-event', isLogin, services.new_event);
+route.get('/add-item', isLogin, services.add_item);
+route.get('/update-event', isLogin, services.update_event);
+route.get('/update-item', isLogin, services.update_item);
+route.get('/invite-create', isLogin, services.invite_create);
+route.get('/preparations', isLogin, services.preparation);
 
-route.get('/invite-accept', controller.acceptInvite);
-route.get('/invite-reject', controller.rejectInvite);
+route.get('/invite-accept', isLogin, controller.acceptInvite);
+route.get('/invite-reject', isLogin, controller.rejectInvite);
 
 route.post('/api/signup', controller.signup);
 route.post('/api/events', controller.createEvent);
