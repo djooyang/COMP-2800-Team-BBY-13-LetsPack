@@ -103,7 +103,7 @@ exports.preparation = (req, res) =>{
     Event.findById(req.query.id).then(eventData => {
         Item.find({eventId: eventData._id}).then(itemData => {
             console.log(itemData);
-            res.render('preparations', {users: eventData.users, items: itemData});
+            res.render('preparations', {users: eventData.users, items: itemData, event: req.query.id});
         }).catch(err =>{
             res.send(err);
         })
