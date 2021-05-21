@@ -6,6 +6,7 @@ var Event = require('../model/event');
 var Login = require('../model/login');
 var Invite = require('../model/invite');
 var ItemDb = require('../model/item');
+var StarterPack = require('../model/starterpack');
 const sanitizeHtml = require('sanitize-html');
 
 /*add library for authentication*/
@@ -51,6 +52,20 @@ exports.signup = (req,res)=>{
 }
 
 
+const createItemsFromPack = (pack, idOfEvent)=> {
+	if (pack !== "none") {
+		StarterPack.findOne({name: pack}, function(err,obj) {
+			let newItems = [];
+			for (let i = 0; i < obj.items.length; i++) {
+				newItems[i] = {name: obj.items[i].name, eventId: idOfEvent, qty: obj.items[i].qty, owner: "", packed: false}
+			}
+				ItemDb.insertMany(newItems);
+		});
+	}
+	return;
+}
+
+
 // create and save new event
 exports.createEvent = (req,res)=>{
     // validate request
@@ -63,8 +78,12 @@ exports.createEvent = (req,res)=>{
     // new event
     const event = new Event({
         name : req.body.name,
-				users : [req._passport.session.user]
+		users : [req._passport.session.user],
+        eventdate : req.body.eventdate,
+        description : req.body.description
     })
+
+		createItemsFromPack(req.body.starterpack, event._id);
 
     // save event in the database
     event.save(event)
@@ -135,6 +154,27 @@ exports.updateEvent = (req, res)=>{
 
 
 // Adds or removes the users id to the owner field of an item.
+exports.packItem = (req, res)=>{
+    const id = sanitizeHtml(req.body.itemId);
+    let packed = sanitizeHtml(req.body.checked);
+
+
+										ItemDb.findByIdAndUpdate(id, {packed : packed}, { useFindAndModify: false})
+												.then(data => {
+														if(!data){
+																res.status(404).send({ message : `Cannot Update item with ${id}. Maybe item not found!`})
+														}else{
+																res.send(data)
+														}
+												})
+												.catch(err =>{
+														res.status(500).send({ message : "Error Update item information"})
+												})
+
+}
+
+
+// Adds or removes the users id to the owner field of an item.
 exports.claimItem = (req, res)=>{
 
     const id = sanitizeHtml(req.body.item);
@@ -154,7 +194,7 @@ exports.claimItem = (req, res)=>{
 										ItemDb.findByIdAndUpdate(id, {owner : newOwner}, { useFindAndModify: false})
 												.then(data => {
 														if(!data){
-																res.status(404).send({ message : `Cannot Update item with ${id}. Maybe event not found!`})
+																res.status(404).send({ message : `Cannot Update item with ${id}. Maybe item not found!`})
 														}else{
 																res.send(data)
 														}
@@ -235,9 +275,15 @@ exports.deleteEvent = (req, res)=>{
             if(!data){
                 res.status(404).send({ message : `Cannot Delete with id ${id}. Maybe id is wrong`})
             }else{
-                res.send({
-                    message : "Event was deleted successfully!"
-                })
+                ItemDb.deleteMany({ eventId: id }).then(function(){
+                    res.send({
+                        message : "Event was deleted successfully!"
+                    })
+                }).catch(function(error){
+                    res.status(500).send({
+                        message: "Could not delete Items from the event with id=" + id
+                    });
+                });
             }
         })
         .catch(err =>{
@@ -262,7 +308,8 @@ exports.createItem = (req,res)=>{
         name : req.body.item,
         eventId : req.body.eventId,
         qty : req.body.qty,
-        owner : req.body.owner
+        owner : req.body.owner,
+        packed : false
     })
 
     // save item in the database

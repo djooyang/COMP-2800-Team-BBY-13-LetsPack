@@ -1,0 +1,20 @@
+<% for(var i = 0; i < users.length; i++) { %>
+        <tr class="dynamic-td ">
+            <td class="td-owner"><span class="td-client-info "><%= users[i] %></span></td>
+
+            
+        </tr>
+    <% for(var j = 0; j < items.length; j++) { %>
+        <% if (items[j].owner === users[i]) { %>
+        <tr class="dynamic-td">
+        
+            <td><span class="td-client-info"><%= items[j].name %></span></td>
+            <td><span class="td-client-info">Qty: <%= items[j].qty %></span></td>
+        
+            <td class="dynamic-td-btns">
+                <input type="checkbox" value="<%= items[j]._id%>" id="packItem" onclick="packUnpack(this)" <% if (items[j].packed === true) { %> checked="checked"<% } %>>
+                <p>Packed</p>
+        </tr>
+        <% } %>
+    <% } %>
+<% } %>

@@ -3,6 +3,10 @@
 const express= require('express');
 const bodyParser= require('body-parser')
 const app = express()
+const morgan = require('morgan');
+const path = require('path');
+const rfs = require('rotating-file-stream');
+const fs = require("fs");
 const route = express.Router();
 const sanitizeHtml = require('sanitize-html');
 
@@ -122,12 +126,31 @@ let invites = [];
 /*************    items  ************* */
 var  ItemDb = require('../model/item')
 
-route.get('/items', function(req, res){
+route.get('/items', isLogin, function(req, res){
+  let events = [];
+  let eventId = sanitizeHtml(req.query.id);
   //디비에 저장된 post라는 collection안의 모든 데이터를 꺼내주세요
- db.collection('items').find({eventId : sanitizeHtml(req.query.id)}).toArray(function(error, result){
-     res.render('items.ejs', { item : result, event : sanitizeHtml(req.query.id)}); // 코드위치 확인
+ db.collection('items').find({eventId : eventId}).toArray(function(error, result){
+   Event.findById(eventId).then(data => {
+    res.render('items.ejs', {events : events, item : result, event : eventId, eventData: data}); // 코드위치 확인
+   })
  });
 });
+
+
+// route.get('/preparations', function(req, res){
+//   let eventId = sanitizeHtml(req.query.id);
+//   //디비에 저장된 post라는 collection안의 모든 데이터를 꺼내주세요
+//  db.collection('items').find({eventId : eventId}).toArray(function(error, result){
+//    Event.findById(eventId).then(data => {
+//     res.render('preparations.ejs', { item : result, event : eventId, eventData: data}); // 코드위치 확인
+//    })
+//  });
+// });
+
+
+
+
 
 
 function isLogin(req, res, next){
@@ -149,20 +172,22 @@ route.get('/logout', function(req,res){
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 route.get('/signup', services.signup);
-route.get('/new-event', services.new_event);
-route.get('/add-item', services.add_item);
-route.get('/update-event', services.update_event);
-route.get('/update-item', services.update_item);
-route.get('/invite-create', services.invite_create);
+route.get('/new-event', isLogin, services.new_event);
+route.get('/add-item', isLogin, services.add_item);
+route.get('/update-event', isLogin, services.update_event);
+route.get('/update-item', isLogin, services.update_item);
+route.get('/invite-create', isLogin, services.invite_create);
+route.get('/preparations', isLogin, services.preparation);
 
-route.get('/invite-accept', controller.acceptInvite);
-route.get('/invite-reject', controller.rejectInvite);
+route.get('/invite-accept', isLogin, controller.acceptInvite);
+route.get('/invite-reject', isLogin, controller.rejectInvite);
 
 route.post('/api/signup', controller.signup);
 route.post('/api/events', controller.createEvent);
 route.post('/api/item', controller.createItem);
 route.post('/api/invites', controller.createInvite);
 route.post('/claim-item', controller.claimItem);
+route.post('/pack-item', controller.packItem);
 route.post('/api/items', controller.createItem);
 route.put('/api/event/:id', controller.updateEvent);
 route.put('/api/item/:id', controller.updateItem);

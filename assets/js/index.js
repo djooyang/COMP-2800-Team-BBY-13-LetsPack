@@ -30,6 +30,19 @@ function validateForm(dataToValidate) {
 
 }
 
+function packUnpack(checkbox) {
+	console.log(checkbox.checked);
+	let data = {checked: checkbox.checked, itemId: checkbox.value};
+	var request = {
+		"url" : 'pack-item',
+		"method" : "POST",
+		"data" : data
+	}
+	
+				$.ajax(request).done(function(response){
+					location.reload();
+			})
+}
 
 $(".claimItem").click(function(event){
 	event.preventDefault();
@@ -39,7 +52,6 @@ $(".claimItem").click(function(event){
 		"method" : "POST",
 		"data" : itemId
 	}
-	console.log(itemId);
 	
 				$.ajax(request).done(function(response){
 					location.reload();
@@ -66,7 +78,7 @@ $("#add_event").submit(function(event){
 			})
 		if (validateForm(data)) {
 			var request = {
-					"url" : `https://letspack.herokuapp.com/api/events`,
+					"url" : `http://localhost:3000/api/events`,
 					"method" : "POST",
 					"data" : data
 			}
@@ -91,7 +103,7 @@ $("#signup").submit(function(event){
 
 		if (validateForm(data)) {
 			var request = {
-					"url" : `https://letspack.herokuapp.com/api/signup`,
+					"url" : `http://localhost:3000/api/signup`,
 					"method" : "POST",
 					"data" : data
 			}
@@ -114,7 +126,7 @@ $("#add_item").submit(function(item){
 
 		if (validateForm(data)) {
 			var request = {
-					"url" : `https://letspack.herokuapp.com/api/items`,
+					"url" : `http://localhost:3000/api/items`,
 					"method" : "POST",
 					"data" : data
 			}
@@ -138,7 +150,7 @@ $("#send-invite").submit(function(event){
 			})
 		if (validateForm(data)) {
 			var request = {
-					"url" : `https://letspack.herokuapp.com/api/invites`,
+					"url" : `http://localhost:3000/api/invites`,
 					"method" : "POST",
 					"data" : data
 			}
@@ -164,7 +176,7 @@ $("#update_event").submit(function(event){
 
 		if (validateForm(data)) {
 			var request = {
-					"url" : `https://letspack.herokuapp.com/api/event/${data.id}`,
+					"url" : `http://localhost:3000/api/event/${data.id}`,
 					"method" : "PUT",
 					"data" : data
 			}
@@ -189,7 +201,7 @@ $("#update_item").submit(function(item){
 
 		if (validateForm(data)) {
 			var request = {
-					"url" : `https://letspack.herokuapp.com/api/item/${data.id}`,      //
+					"url" : `http://localhost:3000/api/item/${data.id}`,      //
 					"method" : "PUT",
 					"data" : data
 			}
@@ -209,15 +221,13 @@ if(window.location.pathname == "/profile"){
         var id = $(this).attr("data-id")
 
         var request = {
-            "url" : `https://letspack.herokuapp.com/api/events/${id}`,
+            "url" : `http://localhost:3000/api/events/${id}`,
             "method" : "DELETE"
         }
 
-        if(confirm("Do you really want to delete this record?")){
-            $.ajax(request).done(function(response){
-                location.reload();
-            })
-        }
+        $.ajax(request).done(function(response){
+            location.reload();
+        })
 
     })
 }
@@ -229,15 +239,17 @@ if(window.location.pathname == "/items"){
         var id = $(this).attr("data-id")
 
         var request = {
-            "url" : `https://letspack.herokuapp.com/api/item/${id}`,
+            "url" : `http://localhost:3000/api/item/${id}`,
             "method" : "DELETE"
         }
 
-        if(confirm("Do you really want to delete this record?")){
-            $.ajax(request).done(function(response){
-                location.reload();
-            })
-        }
+        $.ajax(request).done(function(response){
+            location.reload();
+        })
 
     })
 }
+
+$(".printItem").click(function(){
+	window.print();
+ })

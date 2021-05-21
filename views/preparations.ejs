@@ -1,0 +1,44 @@
+<!-- include header -->
+<%- include('include/_header') %>
+<!-- /include header -->
+
+
+<!-- Main Site -->
+<main id="site-main">
+    <div class="container">
+        <div class="box-nav d-flex">
+            <div class="filter">
+                <a href="/items?id=<%= event %>"><i class="fas fa-angle-double-left"></i>Event</a>
+            </div>
+
+            
+            <button class="border-shadow printItem">
+               Print
+            </button>
+
+        </div>
+        <div class="box-nav d-flex">
+            
+            <table class="table">
+                <thead class="thead-dark">
+
+                </thead>
+                <tbody>
+                    <%- include('include/_showPreparation.ejs') %>
+                </tbody>
+            </table>
+
+        </div>
+
+
+
+
+      
+    </div>
+</main>
+<!-- /Main Site -->
+
+
+<!-- include footer -->
+<%- include('include/_footer.ejs') %>
+<!-- /include footer -->
