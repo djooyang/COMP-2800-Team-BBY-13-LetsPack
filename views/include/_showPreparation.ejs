@@ -12,9 +12,8 @@
             <td><span class="td-client-info">Qty: <%= items[j].qty %></span></td>
         
             <td class="dynamic-td-btns">
-                <button value="<%= items[j]._id%>" class="packItem">
-                    <span>Pack</span>
-                </button>
+                <input type="checkbox" value="<%= items[j]._id%>" id="packItem" onclick="packUnpack(this)" <% if (items[j].packed === true) { %> checked="checked"<% } %>>
+                <p>Packed</p>
         </tr>
         <% } %>
     <% } %>

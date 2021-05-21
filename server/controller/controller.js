@@ -57,7 +57,7 @@ const createItemsFromPack = (pack, idOfEvent)=> {
 		StarterPack.findOne({name: pack}, function(err,obj) {
 			let newItems = [];
 			for (let i = 0; i < obj.items.length; i++) {
-				newItems[i] = {name: obj.items[i].name, eventId: idOfEvent, qty: obj.items[i].qty, owner: ""}
+				newItems[i] = {name: obj.items[i].name, eventId: idOfEvent, qty: obj.items[i].qty, owner: "", packed: false}
 			}
 				ItemDb.insertMany(newItems);
 		});
@@ -154,6 +154,27 @@ exports.updateEvent = (req, res)=>{
 
 
 // Adds or removes the users id to the owner field of an item.
+exports.packItem = (req, res)=>{
+    const id = sanitizeHtml(req.body.itemId);
+    let packed = sanitizeHtml(req.body.checked);
+
+
+										ItemDb.findByIdAndUpdate(id, {packed : packed}, { useFindAndModify: false})
+												.then(data => {
+														if(!data){
+																res.status(404).send({ message : `Cannot Update item with ${id}. Maybe item not found!`})
+														}else{
+																res.send(data)
+														}
+												})
+												.catch(err =>{
+														res.status(500).send({ message : "Error Update item information"})
+												})
+
+}
+
+
+// Adds or removes the users id to the owner field of an item.
 exports.claimItem = (req, res)=>{
 
     const id = sanitizeHtml(req.body.item);
@@ -173,7 +194,7 @@ exports.claimItem = (req, res)=>{
 										ItemDb.findByIdAndUpdate(id, {owner : newOwner}, { useFindAndModify: false})
 												.then(data => {
 														if(!data){
-																res.status(404).send({ message : `Cannot Update item with ${id}. Maybe event not found!`})
+																res.status(404).send({ message : `Cannot Update item with ${id}. Maybe item not found!`})
 														}else{
 																res.send(data)
 														}
@@ -287,7 +308,8 @@ exports.createItem = (req,res)=>{
         name : req.body.item,
         eventId : req.body.eventId,
         qty : req.body.qty,
-        owner : req.body.owner
+        owner : req.body.owner,
+        packed : false
     })
 
     // save item in the database

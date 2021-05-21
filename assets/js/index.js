@@ -30,6 +30,19 @@ function validateForm(dataToValidate) {
 
 }
 
+function packUnpack(checkbox) {
+	console.log(checkbox.checked);
+	let data = {checked: checkbox.checked, itemId: checkbox.value};
+	var request = {
+		"url" : 'pack-item',
+		"method" : "POST",
+		"data" : data
+	}
+	
+				$.ajax(request).done(function(response){
+					location.reload();
+			})
+}
 
 $(".claimItem").click(function(event){
 	event.preventDefault();
@@ -39,7 +52,6 @@ $(".claimItem").click(function(event){
 		"method" : "POST",
 		"data" : itemId
 	}
-	console.log(itemId);
 	
 				$.ajax(request).done(function(response){
 					location.reload();

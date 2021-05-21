@@ -187,6 +187,7 @@ route.post('/api/events', controller.createEvent);
 route.post('/api/item', controller.createItem);
 route.post('/api/invites', controller.createInvite);
 route.post('/claim-item', controller.claimItem);
+route.post('/pack-item', controller.packItem);
 route.post('/api/items', controller.createItem);
 route.put('/api/event/:id', controller.updateEvent);
 route.put('/api/item/:id', controller.updateItem);

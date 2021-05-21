@@ -20,7 +20,10 @@ var schema = new mongoose.Schema({
     },
     owner : {
         type : String
-    }
+    },
+    packed : {
+        type : Boolean
+		}
 })
 
 
