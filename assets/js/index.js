@@ -237,3 +237,7 @@ if(window.location.pathname == "/items"){
 
     })
 }
+
+$(".printItem").click(function(){
+	window.print();
+ })

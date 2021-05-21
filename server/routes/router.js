@@ -136,14 +136,30 @@ let invites = [];
 var  ItemDb = require('../model/item')
 
 route.get('/items', function(req, res){
+  let events = [];
   let eventId = sanitizeHtml(req.query.id);
   //디비에 저장된 post라는 collection안의 모든 데이터를 꺼내주세요
  db.collection('items').find({eventId : eventId}).toArray(function(error, result){
    Event.findById(eventId).then(data => {
-    res.render('items.ejs', { item : result, event : eventId, eventData: data}); // 코드위치 확인
+    res.render('items.ejs', {events : events, item : result, event : eventId, eventData: data}); // 코드위치 확인
    })
  });
 });
+
+
+// route.get('/preparations', function(req, res){
+//   let eventId = sanitizeHtml(req.query.id);
+//   //디비에 저장된 post라는 collection안의 모든 데이터를 꺼내주세요
+//  db.collection('items').find({eventId : eventId}).toArray(function(error, result){
+//    Event.findById(eventId).then(data => {
+//     res.render('preparations.ejs', { item : result, event : eventId, eventData: data}); // 코드위치 확인
+//    })
+//  });
+// });
+
+
+
+
 
 
 function isLogin(req, res, next){
@@ -170,6 +186,7 @@ route.get('/add-item', services.add_item);
 route.get('/update-event', services.update_event);
 route.get('/update-item', services.update_item);
 route.get('/invite-create', services.invite_create);
+route.get('/preparations', services.preparation);
 
 route.get('/invite-accept', controller.acceptInvite);
 route.get('/invite-reject', controller.rejectInvite);
