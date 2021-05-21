@@ -38,15 +38,6 @@ MongoClient.connect('mongodb+srv://lunaticky:rhanchd6@cluster0.rfmec.mongodb.net
 route.use(filter(options, {dispatchToErrorHandler: true}));
 
 
-const accessLogStream = rfs.createStream('access.log', {
-  interval: '1d',
-  path: path.join(__dirname, '../logs')
-});
-
-route.use(morgan(':referrer :url :user-agent',
-               { stream: accessLogStream }));
-
-
 /**
  * @description Root Route
  * @method GET /
