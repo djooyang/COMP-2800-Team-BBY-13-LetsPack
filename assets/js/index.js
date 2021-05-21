@@ -78,7 +78,7 @@ $("#add_event").submit(function(event){
 			})
 		if (validateForm(data)) {
 			var request = {
-					"url" : `http://localhost:3000/api/events`,
+					"url" : `https://git.heroku.com/api/events`,
 					"method" : "POST",
 					"data" : data
 			}
@@ -103,7 +103,7 @@ $("#signup").submit(function(event){
 
 		if (validateForm(data)) {
 			var request = {
-					"url" : `http://localhost:3000/api/signup`,
+					"url" : `https://git.heroku.com/api/signup`,
 					"method" : "POST",
 					"data" : data
 			}
@@ -126,7 +126,7 @@ $("#add_item").submit(function(item){
 
 		if (validateForm(data)) {
 			var request = {
-					"url" : `http://localhost:3000/api/items`,
+					"url" : `https://git.heroku.com/api/items`,
 					"method" : "POST",
 					"data" : data
 			}
@@ -150,7 +150,7 @@ $("#send-invite").submit(function(event){
 			})
 		if (validateForm(data)) {
 			var request = {
-					"url" : `http://localhost:3000/api/invites`,
+					"url" : `https://git.heroku.com/api/invites`,
 					"method" : "POST",
 					"data" : data
 			}
@@ -176,7 +176,7 @@ $("#update_event").submit(function(event){
 
 		if (validateForm(data)) {
 			var request = {
-					"url" : `http://localhost:3000/api/event/${data.id}`,
+					"url" : `https://git.heroku.com/api/event/${data.id}`,
 					"method" : "PUT",
 					"data" : data
 			}
@@ -201,7 +201,7 @@ $("#update_item").submit(function(item){
 
 		if (validateForm(data)) {
 			var request = {
-					"url" : `http://localhost:3000/api/item/${data.id}`,      //
+					"url" : `https://git.heroku.com/api/item/${data.id}`,      //
 					"method" : "PUT",
 					"data" : data
 			}
@@ -221,7 +221,7 @@ if(window.location.pathname == "/profile"){
         var id = $(this).attr("data-id")
 
         var request = {
-            "url" : `http://localhost:3000/api/events/${id}`,
+            "url" : `https://git.heroku.com/api/events/${id}`,
             "method" : "DELETE"
         }
 
@@ -239,7 +239,7 @@ if(window.location.pathname == "/items"){
         var id = $(this).attr("data-id")
 
         var request = {
-            "url" : `http://localhost:3000/api/item/${id}`,
+            "url" : `https://git.heroku.com/api/item/${id}`,
             "method" : "DELETE"
         }
 
