@@ -46,6 +46,7 @@ exports.signup = (req, res) =>{
 
 
 var Event = require('../model/event');
+const Item = require('../model/item');
 var ItemDb = require('../model/item');
 
 exports.update_event = (req, res) =>{
@@ -95,4 +96,18 @@ exports.new_event = (req, res) =>{
 
 exports.badURL = (req, res) =>{
 	res.redirect('/')
+}
+
+
+exports.preparation = (req, res) =>{
+    Event.findById(req.query.id).then(eventData => {
+        Item.find({eventId: eventData._id}).then(itemData => {
+            console.log(itemData);
+            res.render('preparations', {users: eventData.users, items: itemData});
+        }).catch(err =>{
+            res.send(err);
+        })
+    }).catch(err =>{
+        res.send(err);
+    })
 }
