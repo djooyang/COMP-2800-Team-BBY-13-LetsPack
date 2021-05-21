@@ -315,7 +315,8 @@ exports.createItem = (req,res)=>{
     // save item in the database
     item.save(item)
         .then(data => {
-            res.redirect('/items');
+			console.log("SERVER ADDED");
+            res.send({ message : "Item Added."});
         })
         .catch(err =>{
             res.status(500).send({

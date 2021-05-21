@@ -132,7 +132,7 @@ $("#add_item").submit(function(item){
 			}
 
 			$.ajax(request).done(function(response){
-					alert("Data Inserted Successfully!");
+				window.location.replace("/items?id=" + data.eventId);
 			})
 
     }
@@ -207,7 +207,7 @@ $("#update_item").submit(function(item){
 			}
 
 			$.ajax(request).done(function(response){
-					alert("Data Updated Successfully!");
+					window.location.replace("/items?id=" + data.eventId)
 			})
 
     }
