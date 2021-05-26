@@ -2,7 +2,7 @@
  <form method="POST" id="send-invite">
     <div class="new_user">
         <div class="form-group">
-            <label for="id" class="text-light">Email</label>
+            <label for="id" class="text-light">Email <span class='requiredStar'>*</span> </label>
             <input type="hidden" name="eventid" value="<%= event._id %>">
             <input type="hidden" name="sender" value="<%= sender %>">
             <input type="hidden" name="eventname" value="<%= event.name %>">
