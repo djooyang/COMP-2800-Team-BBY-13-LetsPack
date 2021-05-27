@@ -124,6 +124,7 @@ $("#add_item").submit(function(item){
 					data[n['name']] = n['value']
 			})
 
+<<<<<<< HEAD
 		if (validateForm(data)) {
 			var request = {
 					"url" : `https://letspack.herokuapp.com/api/items`,
@@ -136,6 +137,24 @@ $("#add_item").submit(function(item){
 			})
 
     }
+=======
+		if (data.qty < 1) {
+				alert('Item qty must be 1 or more.');
+		} else {
+				if (validateForm(data)) {
+					var request = {
+							"url" : `https://letspack.herokuapp.com/api/items`,
+							"method" : "POST",
+							"data" : data
+					}
+
+					$.ajax(request).done(function(response){
+						window.location.replace("/items?id=" + data.eventId);
+					})
+
+				}
+		}
+>>>>>>> develop
 
 })
 
@@ -156,7 +175,11 @@ $("#send-invite").submit(function(event){
 			}
 
 			$.ajax(request).done(function(response){
+				if (response.message) {
+					alert(response.message);
+				} else {
 					window.location.replace("/profile");
+				}
 			})
 
     }
@@ -199,6 +222,7 @@ $("#update_item").submit(function(item){
 					data[n['name']] = n['value']
 			})
 
+
 		if (validateForm(data)) {
 			var request = {
 					"url" : `https://letspack.herokuapp.com/api/item/${data.id}`,      //
@@ -206,11 +230,21 @@ $("#update_item").submit(function(item){
 					"data" : data
 			}
 
-			$.ajax(request).done(function(response){
-					window.location.replace("/items?id=" + data.eventId)
-			})
+		if (data.qty < 1) {
+				alert('Item qty must be 1 or more.');
+		} else {
+			if (validateForm(data)) {
+				var request = {
+						"url" : `https://letspack.herokuapp.com/api/item/${data.id}`,      //
+						"method" : "PUT",
+						"data" : data
+				}
 
-    }
+				$.ajax(request).done(function(response){
+						window.location.replace("/items?id=" + data.eventId)
+				})
+			}
+		}
 
 })
 

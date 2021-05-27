@@ -98,3 +98,6 @@ width: auto;
 
   }
 
+  .requiredStar {
+    color : red;
+}

@@ -1,50 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>LetsPack</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>LetsPack</title>
+	<meta property="og:url" content="https://letspack.herokuapp.com/" />
+	<meta property="og:type" content="LetsPack" />
+	<meta property="og:title" content="LetsPack Herokuapp" />
+	<meta property="og:description" content="Your collaberative packing solution." />
+	<meta property="og:image" content="https://letspack.herokuapp.com/img/damon.jpg" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="css/style.css">
-	  <link rel="stylesheet" href="css/main.css">
-	  <link rel="stylesheet" href="css/about.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+		integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+		crossorigin="anonymous" />
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/about.css">
 </head>
+
 <body>
-    
-    <!-- Header -->
-        <header id="header">
-						<nav class="container_nav">
+	<!-- Load Facebook SDK for JavaScript -->
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_KR/sdk.js#xfbml=1&version=v10.0"
+		nonce="UX7WK9kl"></script>
+	<!-- Header -->
+	<header id="header">
+		<nav class="container_nav">
 
-							<div class="hambergerMeun">
-									<a href="/profile" class="active"><img class="logo" src="/img/favicon.ico"><span id="projectName">LetsPack</span></a>
-									<div id="menuDetail">
-									 		<a href="/about">About Us</a>
-											<a href="/profile">Profile</a>
-											<a href="/login">Login</a>
-											<a href="/logout">Logout</a>
-									</div>
-									<a href="javascript:void(0);" class="icon" onclick="listMenu()">
-											<i class="fa fa-bars"></i>
-									</a>
-							</div>
-							<div class="student">
-								<p>Robert Roe: A00187290</p>
-								<p>Daniel Yang A01231809</p>
-								<p>Kwanyong Jo A01207367</p>
-							</div>
+			<div class="hambergerMeun">
+				<a href="/profile" class="active"><img class="logo" src="/img/favicon.ico"><span
+						id="projectName">LetsPack</span></a>
 
-						</nav>
+				
+				<div id="menuDetail">
+					<a href="/about">About Us</a>
+					<a href="/profile">Profile</a>
+					<a href="/login">Login</a>
+					<a href="/logout">Logout</a>
+				</div>
+				<a href="javascript:void(0);" class="icon" onclick="listMenu()">
+					<i class="fa fa-bars"></i>
+				</a>
+			</div>
+			<div class="student">
+				<div class="fb-share-button"  data-href="https://letspack.herokuapp.com/" data-layout="button"
+					data-size="large"><a target="_blank"
+						href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fletspack.herokuapp.com%2F&src=sdkpreparse"
+						class="fb-xfbml-parse-ignore"> Share </a></div>
+				<p>Robert Roe: A00187290</p>
+				<p>Daniel Yang A01231809</p>
+				<p>Kwanyong Jo A01207367</p>
+			</div>
 
-						<script>
-								function listMenu() {
-									var a = document.getElementById("menuDetail");
-									if (a.style.display === "block") {
-										a.style.display = "none";
-									} else {
-										a.style.display = "block";
-									}
-								}
-						</script>
-        </header>
+		</nav>
 
+		<script>
+			function listMenu() {
+				var a = document.getElementById("menuDetail");
+				if (a.style.display === "block") {
+					a.style.display = "none";
+				} else {
+					a.style.display = "block";
+				}
+			}
+		</script>
+	</header>

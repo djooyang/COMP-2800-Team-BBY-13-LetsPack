@@ -22,17 +22,17 @@
     <div class="new_user">
         <div class="form-group">
              <div class="event-input">
-                <label for="name" class="text-light">Name</label>
+                <label for="name" class="text-light">Name <span class='requiredStar'>*</span></label>
             <input type="hidden"   name="id" value="<%= event._id %>">
             <input type="text" name="name" value="<%= event.name %>" placeholder="Camping" required>
             </div>
             <div class="event-input">
-                <label for="eventdate" class="text-light">Event date</label>
+                <label for="eventdate" class="text-light">Event date <span class='requiredStar'>*</span></label>
                 <input type="date" name="eventdate" value="<%= event.eventdate %>" required>
             </div>
             <div class="event-input">
-                <label for="description" class="text-light" style="display : block; width: 200px">Event description</label>
-                <textarea type="text" name="description" placeholder="Explain about the event" rows="10" cols="30" value= required><%= event.description %></textarea>
+                <label for="description" class="text-light" style="display : block; width: 200px">Event description <span class='requiredStar'>*</span></label>
+                <textarea type="text" name="description" placeholder="Explain about the event" rows="10" cols="30" required><%= event.description %></textarea>
             </div>
 
 

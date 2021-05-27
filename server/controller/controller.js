@@ -1,7 +1,5 @@
 "use strict";
 
-var Userdb = require('../model/model');
-var Users = require('../model/user');
 var Event = require('../model/event');
 var Login = require('../model/login');
 var Invite = require('../model/invite');
@@ -107,6 +105,9 @@ exports.createInvite = (req,res)=>{
     }
     sanitizeHtmlOfBody(req.body);
 
+		Login.findOne({id: req.body.recipient}, function(err,obj) {
+			if (obj) {
+
     // new invite
     const invite = new Invite({
         sender : req.body.sender,
@@ -125,6 +126,12 @@ exports.createInvite = (req,res)=>{
                 message : err.message || "Some error occurred while creating a create operation"
             });
         });
+
+			} else {
+				res.send({message: "Specified user does not exist."});
+			}
+		});
+
 }
 
 
@@ -276,9 +283,17 @@ exports.deleteEvent = (req, res)=>{
                 res.status(404).send({ message : `Cannot Delete with id ${id}. Maybe id is wrong`})
             }else{
                 ItemDb.deleteMany({ eventId: id }).then(function(){
-                    res.send({
-                        message : "Event was deleted successfully!"
-                    })
+
+                    Invite.deleteMany({ eventid: id }).then(function(){
+                        res.send({
+                            message : "Event was deleted successfully!"
+                        })
+                    }).catch(function(error){
+                        res.status(500).send({
+                            message: "Could not delete Invites from the event with id=" + id
+                        });
+                    });
+
                 }).catch(function(error){
                     res.status(500).send({
                         message: "Could not delete Items from the event with id=" + id
