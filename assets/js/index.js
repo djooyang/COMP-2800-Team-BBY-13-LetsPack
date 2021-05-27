@@ -78,7 +78,7 @@ $("#add_event").submit(function(event){
 			})
 		if (validateForm(data)) {
 			var request = {
-					"url" : `https://git.heroku.com/api/events`,
+					"url" : `https://letspack.herokuapp.com/api/events`,
 					"method" : "POST",
 					"data" : data
 			}
@@ -103,7 +103,7 @@ $("#signup").submit(function(event){
 
 		if (validateForm(data)) {
 			var request = {
-					"url" : `https://git.heroku.com/api/signup`,
+					"url" : `https://letspack.herokuapp.com/api/signup`,
 					"method" : "POST",
 					"data" : data
 			}
@@ -124,18 +124,22 @@ $("#add_item").submit(function(item){
 					data[n['name']] = n['value']
 			})
 
-		if (validateForm(data)) {
-			var request = {
-					"url" : `https://git.heroku.com/api/items`,
-					"method" : "POST",
-					"data" : data
-			}
+		if (data.qty < 1) {
+				alert('Item qty must be 1 or more.');
+		} else {
+				if (validateForm(data)) {
+					var request = {
+							"url" : `https://letspack.herokuapp.com/api/items`,
+							"method" : "POST",
+							"data" : data
+					}
 
-			$.ajax(request).done(function(response){
-				window.location.replace("/items?id=" + data.eventId);
-			})
+					$.ajax(request).done(function(response){
+						window.location.replace("/items?id=" + data.eventId);
+					})
 
-    }
+				}
+		}
 
 })
 
@@ -150,13 +154,17 @@ $("#send-invite").submit(function(event){
 			})
 		if (validateForm(data)) {
 			var request = {
-					"url" : `https://git.heroku.com/api/invites`,
+					"url" : `https://letspack.herokuapp.com/api/invites`,
 					"method" : "POST",
 					"data" : data
 			}
 
 			$.ajax(request).done(function(response){
+				if (response.message) {
+					alert(response.message);
+				} else {
 					window.location.replace("/profile");
+				}
 			})
 
     }
@@ -176,7 +184,7 @@ $("#update_event").submit(function(event){
 
 		if (validateForm(data)) {
 			var request = {
-					"url" : `https://git.heroku.com/api/event/${data.id}`,
+					"url" : `https://letspack.herokuapp.com/api/event/${data.id}`,
 					"method" : "PUT",
 					"data" : data
 			}
@@ -199,18 +207,21 @@ $("#update_item").submit(function(item){
 					data[n['name']] = n['value']
 			})
 
-		if (validateForm(data)) {
-			var request = {
-					"url" : `https://git.heroku.com/api/item/${data.id}`,      //
-					"method" : "PUT",
-					"data" : data
+		if (data.qty < 1) {
+				alert('Item qty must be 1 or more.');
+		} else {
+			if (validateForm(data)) {
+				var request = {
+						"url" : `https://letspack.herokuapp.com/api/item/${data.id}`,      //
+						"method" : "PUT",
+						"data" : data
+				}
+
+				$.ajax(request).done(function(response){
+						window.location.replace("/items?id=" + data.eventId)
+				})
 			}
-
-			$.ajax(request).done(function(response){
-					window.location.replace("/items?id=" + data.eventId)
-			})
-
-    }
+		}
 
 })
 
@@ -221,7 +232,7 @@ if(window.location.pathname == "/profile"){
         var id = $(this).attr("data-id")
 
         var request = {
-            "url" : `https://git.heroku.com/api/events/${id}`,
+            "url" : `https://letspack.herokuapp.com/api/events/${id}`,
             "method" : "DELETE"
         }
 
@@ -239,7 +250,7 @@ if(window.location.pathname == "/items"){
         var id = $(this).attr("data-id")
 
         var request = {
-            "url" : `https://git.heroku.com/api/item/${id}`,
+            "url" : `https://letspack.herokuapp.com/api/item/${id}`,
             "method" : "DELETE"
         }
 
