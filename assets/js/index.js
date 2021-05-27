@@ -124,20 +124,6 @@ $("#add_item").submit(function(item){
 					data[n['name']] = n['value']
 			})
 
-
-		if (validateForm(data)) {
-			var request = {
-					"url" : `https://letspack.herokuapp.com/api/items`,
-					"method" : "POST",
-					"data" : data
-			}
-
-			$.ajax(request).done(function(response){
-				window.location.replace("/items?id=" + data.eventId);
-			})
-
-    }
-
 		if (data.qty < 1) {
 				alert('Item qty must be 1 or more.');
 		} else {
