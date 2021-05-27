@@ -264,3 +264,22 @@ table{
     border-radius: .2em;
     margin: .5em 0;
 }
+
+.error-massage {
+    color : white;
+    padding: 20px;
+    text-align: center;
+    margin-top: 10%;
+}
+
+.error-massage h2 {
+    font-size :3rem;
+}
+
+.error-massage div {
+    margin-top : 20px;
+    font-size :2rem;
+    border-top: solid white 1px;
+    width: 70%;
+    margin: auto;
+}

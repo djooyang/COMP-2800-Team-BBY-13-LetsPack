@@ -50,6 +50,9 @@ route.get('/login', services.login);
 /* routing login page*/
 route.get('/about', services.about);
 
+/* error page*/
+route.get('/error', services.error);
+
 
 //**********************AUTHENTICATION**************************
 /*add library for authentication*/
