@@ -124,7 +124,7 @@ $("#add_item").submit(function(item){
 					data[n['name']] = n['value']
 			})
 
-<<<<<<< HEAD
+
 		if (validateForm(data)) {
 			var request = {
 					"url" : `https://letspack.herokuapp.com/api/items`,
@@ -137,7 +137,7 @@ $("#add_item").submit(function(item){
 			})
 
     }
-=======
+
 		if (data.qty < 1) {
 				alert('Item qty must be 1 or more.');
 		} else {
@@ -154,7 +154,6 @@ $("#add_item").submit(function(item){
 
 				}
 		}
->>>>>>> develop
 
 })
 
