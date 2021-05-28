@@ -13,21 +13,20 @@
         </div>
 
         <div class="box-nav d-flex">
-            <div class="filter">
-                <p><%= eventData.description %></p>
-            </div>
-        </div>
-
-        <div class="box-nav d-flex">
-
             <div>
                 <div>
-                    Event : <%=  eventData.name %>
+                    Event Name : <%=  eventData.name %>
                 </div>
                 <div>
                     Date : <%=  eventData.eventdate%>
                 </div>
             </div>
+            <div class="filter">
+                <p>Event Description : <%= eventData.description %></p>
+            </div>
+        </div>
+
+        <div class="box-nav d-flex">
             <a href="/preparations?id=<%= eventData._id%>" class="btn border-shadow update a-preparation">
                 <span>Preparations</span>
             </a>
