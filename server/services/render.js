@@ -16,6 +16,10 @@ exports.about = (req, res) => {
 	res.render('about.ejs');
 }
 
+exports.error = (req, res) => {
+	res.render('404.ejs');
+}
+
 
 //****************Item part*********************** */
 
@@ -95,7 +99,7 @@ exports.new_event = (req, res) =>{
 }
 
 exports.badURL = (req, res) =>{
-	res.redirect('/')
+	res.redirect('/error')
 }
 
 
