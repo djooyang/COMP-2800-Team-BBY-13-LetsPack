@@ -78,7 +78,7 @@ $("#add_event").submit(function(event){
 			})
 		if (validateForm(data)) {
 			var request = {
-					"url" : `https://letspack.herokuapp.com/api/events`,
+					"url" : `https://lets-pack-app-to-heroku.herokuapp.com/api/events`,
 					"method" : "POST",
 					"data" : data
 			}
@@ -103,7 +103,7 @@ $("#signup").submit(function(event){
 
 		if (validateForm(data)) {
 			var request = {
-					"url" : `https://letspack.herokuapp.com/api/signup`,
+					"url" : `https://lets-pack-app-to-heroku.herokuapp.com/api/signup`,
 					"method" : "POST",
 					"data" : data
 			}
@@ -129,7 +129,7 @@ $("#add_item").submit(function(item){
 		} else {
 				if (validateForm(data)) {
 					var request = {
-							"url" : `https://letspack.herokuapp.com/api/items`,
+							"url" : `https://lets-pack-app-to-heroku.herokuapp.com/api/items`,
 							"method" : "POST",
 							"data" : data
 					}
@@ -154,7 +154,7 @@ $("#send-invite").submit(function(event){
 			})
 		if (validateForm(data)) {
 			var request = {
-					"url" : `https://letspack.herokuapp.com/api/invites`,
+					"url" : `https://lets-pack-app-to-heroku.herokuapp.com/api/invites`,
 					"method" : "POST",
 					"data" : data
 			}
@@ -184,7 +184,7 @@ $("#update_event").submit(function(event){
 
 		if (validateForm(data)) {
 			var request = {
-					"url" : `https://letspack.herokuapp.com/api/event/${data.id}`,
+					"url" : `https://lets-pack-app-to-heroku.herokuapp.com/api/event/${data.id}`,
 					"method" : "PUT",
 					"data" : data
 			}
@@ -212,7 +212,7 @@ $("#update_item").submit(function(item){
 		} else {
 			if (validateForm(data)) {
 				var request = {
-						"url" : `https://letspack.herokuapp.com/api/item/${data.id}`,      //
+						"url" : `https://lets-pack-app-to-heroku.herokuapp.com/api/item/${data.id}`,      //
 						"method" : "PUT",
 						"data" : data
 				}
@@ -232,7 +232,7 @@ if(window.location.pathname == "/profile"){
         var id = $(this).attr("data-id")
 
         var request = {
-            "url" : `https://letspack.herokuapp.com/api/events/${id}`,
+            "url" : `https://lets-pack-app-to-heroku.herokuapp.com/api/events/${id}`,
             "method" : "DELETE"
         }
 
@@ -250,7 +250,7 @@ if(window.location.pathname == "/items"){
         var id = $(this).attr("data-id")
 
         var request = {
-            "url" : `https://letspack.herokuapp.com/api/item/${id}`,
+            "url" : `https://lets-pack-app-to-heroku.herokuapp.com/api/item/${id}`,
             "method" : "DELETE"
         }
 
